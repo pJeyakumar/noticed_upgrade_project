@@ -10,7 +10,8 @@ RUN apk update \
     coreutils \
     git \
     postgresql-client \ 
-    libpq-dev
+    libpq-dev \
+    libc6-compat
 
 # Expose Puma port
 EXPOSE 3000
