@@ -3,6 +3,7 @@
 {
 	"name": "DigitalAF Flight Sim 3.0",
 	"dockerComposeFile": [
+    "../config/docker/docker-compose.dev.yml",
     "docker-compose.yml"
   ],
 	"service": "noticed_flight_sim",

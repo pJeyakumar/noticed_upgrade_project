@@ -10,7 +10,7 @@ volumes:
   public:
 
 networks:
-  noticed_flight_sim-net:
+  noticed-flight-sim-net:
     name: noticed_flight_sim_network
 
 services:
@@ -44,7 +44,7 @@ services:
     tmpfs:
       - /tmp
     networks:
-      - noticed_flight_sim-net
+      - noticed-flight-sim-net
   noticed_flight_sim_db:
     image: postgres:11.6-alpine
     container_name: noticed_flight_sim_db
@@ -54,7 +54,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ../docker/db/digitalaf-role.sql:/docker-entrypoint-initdb.d/digitalaf-role.sql
     networks:
-      - noticed_flight_sim-net
+      - noticed-flight-sim-net
   noticed_flight_sim_vite:
     build:
       context: ../
@@ -73,4 +73,4 @@ services:
     ports:
       - "3036:3036"
     networks:
-      - noticed_flight_sim-net
+      - noticed-flight-sim-net
