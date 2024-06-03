@@ -1,0 +1,42 @@
+// For format details, see <https://aka.ms/devcontainer.json>. For config options, see the README at:
+// <https://github.com/microsoft/vscode-dev-containers/tree/v0.217.4/containers/docker-from-docker-compose>
+{
+	"name": "DigitalAF Flight Sim 3.0",
+	"dockerComposeFile": [
+    "docker-compose.yml"
+  ],
+	"service": "app",
+	"workspaceFolder": "/app",
+
+// Add the IDs of extensions you want installed when the container is created.
+// Add the IDs of extensions you want installed when the container is created.
+  "customizations": {
+    "vscode": {
+        "setings": {
+            "editor.formatOnSave": false,
+            "[ruby]": {
+              "editor.defaultFormatter": "castwide.solargraph",
+            },
+            "files.associations": {
+              "*.erb": "erb"
+            },
+            "[erb]": {
+              "editor.defaultFormatter":"aliariff.vscode-erb-beautify" ,
+            },
+            "[html]": {
+              "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+            },
+                // Editor defaults
+            // RoR standard is two space indents
+            "editor.insertSpaces": true,
+            "editor.tabSize": 2
+        }
+    }
+},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [
+    3000,
+    3036
+  ]
+}
