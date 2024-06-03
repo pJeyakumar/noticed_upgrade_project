@@ -5,7 +5,7 @@
 	"dockerComposeFile": [
     "docker-compose.yml"
   ],
-	"service": "app",
+	"service": "noticed_flight_sim",
 	"workspaceFolder": "/app",
 
 // Add the IDs of extensions you want installed when the container is created.

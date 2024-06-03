@@ -1,0 +1,76 @@
+
+# <https://codewithhugo.com/docker-compose-local-https/>
+version: '3.6'
+
+volumes:
+  postgres_data:
+  bundle:
+  node_modules:
+  rails_cache:
+  public:
+
+networks:
+  noticed_flight_sim-net:
+    name: noticed_flight_sim_network
+
+services:
+  noticed_flight_sim:
+    container_name: noticed_flight_sim
+    build:
+      context: ../
+      dockerfile: docker/app/Dockerfile
+    image: noticed_flight_sim:dev
+    environment:
+      VITE_RUBY_HOST: noticed_flight_sim_vite
+    working_dir: /app
+    depends_on:
+      - noticed_flight_sim_db
+      - noticed_flight_sim_vite
+    links:
+      - noticed_flight_sim_db
+    ports:
+      - 3000:3000
+      - 1234:1234
+      - 26162:26162
+    stdin_open: true
+    tty: true
+    volumes:
+      - ..:/app:cached
+      - rails_cache:/app/tmp/cache
+      - bundle:/usr/local/bundle
+      - node_modules:/app/node_modules
+      - public:/app/public/vite
+      - ~/.ssh:/root/.ssh:ro
+    tmpfs:
+      - /tmp
+    networks:
+      - noticed_flight_sim-net
+  noticed_flight_sim_db:
+    image: postgres:11.6-alpine
+    container_name: noticed_flight_sim_db
+    volumes:
+      - ../docker/db/certs/server.crt:/var/lib/postgresql/server.crt
+      - ../docker/db/certs/server.key:/var/lib/postgresql/server.key
+      - postgres_data:/var/lib/postgresql/data
+      - ../docker/db/digitalaf-role.sql:/docker-entrypoint-initdb.d/digitalaf-role.sql
+    networks:
+      - noticed_flight_sim-net
+  noticed_flight_sim_vite:
+    build:
+      context: ../
+      dockerfile: docker/app/Dockerfile
+    container_name: noticed_flight_sim_vite
+    image: noticed_flight_sim:dev
+    command: sh /app/boot-vite.sh
+    volumes:
+      - ..:/app:cached
+      - bundle:/usr/local/bundle
+      - node_modules:/app/node_modules
+      - public:/app/public
+    environment:
+      DEBUG: '*vite*'
+      VITE_RUBY_HOST: 0.0.0.0
+    ports:
+      - "3036:3036"
+    networks:
+      - noticed_flight_sim-net
