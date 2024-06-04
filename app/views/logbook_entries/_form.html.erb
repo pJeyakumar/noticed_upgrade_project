@@ -32,13 +32,18 @@
   </div>
 
   <div>
+    <%= form.label :aircraft_id, style: "display: block" %>
+    <%= form.select :aircraft_id, Aircraft.all.pluck(:id) %>
+  </div>
+
+  <div>
     <%= form.label :pilot_in_command_id, style: "display: block" %>
-    <%= form.text_field :pilot_in_command_id %>
+    <%= form.select :pilot_in_command_id, User.all.pluck(:id) %>
   </div>
 
   <div>
     <%= form.label :second_in_command_id, style: "display: block" %>
-    <%= form.text_field :second_in_command_id %>
+    <%= form.select :second_in_command_id, User.all.pluck(:id) %>
   </div>
 
   <div>
@@ -63,7 +68,7 @@
 
   <div>
     <%= form.label :time_of_day, style: "display: block" %>
-    <%= form.number_field :time_of_day %>
+    <%= form.select(:time_of_day, [['Day', 'day'], ['Night', 'Night']]) %>
   </div>
 
   <div>

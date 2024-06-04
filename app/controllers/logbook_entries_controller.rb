@@ -65,6 +65,6 @@ class LogbookEntriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def logbook_entry_params
-      params.require(:logbook_entry).permit(:date, :departure_icao, :arrival_icao, :duration, :pilot_in_command_id, :second_in_command_id, :flt_training, :ground_training, :simulator, :cross_country, :time_of_day, :actual_instrument, :simulated_instrument, :day_landing, :night_landing, :single_engine_land, :multi_engine_land, :notes)
+      params.require(:logbook_entry).permit(:date, :departure_icao, :arrival_icao, :duration, :aircraft_id, :pilot_in_command_id, :second_in_command_id, :flt_training, :ground_training, :simulator, :cross_country, :time_of_day, :actual_instrument, :simulated_instrument, :day_landing, :night_landing, :single_engine_land, :multi_engine_land, :notes)
     end
 end
