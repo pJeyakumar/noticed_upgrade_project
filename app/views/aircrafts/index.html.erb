@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Aircrafts</h1>
+
+<div id="aircrafts">
+  <% @aircrafts.each do |aircraft| %>
+    <%= render aircraft %>
+    <p>
+      <%= link_to "Show this aircraft", aircraft %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New aircraft", new_aircraft_path %>

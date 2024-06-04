@@ -1,0 +1,17 @@
+<%= form_with(model: aircraft) do |form| %>
+  <% if aircraft.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(aircraft.errors.count, "error") %> prohibited this aircraft from being saved:</h2>
+
+      <ul>
+        <% aircraft.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
