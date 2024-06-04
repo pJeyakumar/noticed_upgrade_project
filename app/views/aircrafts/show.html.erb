@@ -1,9 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
 
-<%= render @aircraft %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <%= render @aircraft %>
+    </div>
+  </div>
 
-<div>
-  <%= link_to "Edit this aircraft", edit_aircraft_path(@aircraft) %> |
-  <%= link_to "Back to aircrafts", aircrafts_path %>
-  <%= button_to "Destroy this aircraft", @aircraft, method: :delete %>
+  <div class="d-flex justify-content-between">
+    <div>
+      <%= link_to "Edit this aircraft", edit_aircraft_path(@aircraft), class: "btn btn-primary me-2" %>
+      <%= link_to "Back to aircrafts", aircrafts_path, class: "btn btn-secondary" %>
+    </div>
+    <%= button_to "Destroy this aircraft", @aircraft, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>
 </div>
