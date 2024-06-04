@@ -1,0 +1,17 @@
+<%= form_with(model: logbook_entry) do |form| %>
+  <% if logbook_entry.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(logbook_entry.errors.count, "error") %> prohibited this logbook_entry from being saved:</h2>
+
+      <ul>
+        <% logbook_entry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

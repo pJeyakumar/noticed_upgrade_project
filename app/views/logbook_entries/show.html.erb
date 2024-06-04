@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @logbook_entry %>
+
+<div>
+  <%= link_to "Edit this logbook entry", edit_logbook_entry_path(@logbook_entry) %> |
+  <%= link_to "Back to logbook entries", logbook_entries_path %>
+
+  <%= button_to "Destroy this logbook entry", @logbook_entry, method: :delete %>
+</div>

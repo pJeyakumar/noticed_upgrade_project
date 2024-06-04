@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Logbook entries</h1>
+
+<div id="logbook_entries">
+  <% @logbook_entries.each do |logbook_entry| %>
+    <%= render logbook_entry %>
+    <p>
+      <%= link_to "Show this logbook entry", logbook_entry %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New logbook entry", new_logbook_entry_path %>
