@@ -1,10 +1,107 @@
-<p style="color: green"><%= notice %></p>
+<%= form_with(model: @logbook_entry) do |form| %>
+  <% if @logbook_entry.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@logbook_entry.errors.count, "error") %> prohibited this logbook_entry from being saved:</h2>
 
-<%= render @aircraft %>
+      <ul>
+        <% @logbook_entry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<div>
-  <%= link_to "Edit this aircraft", edit_aircraft_path(@aircraft) %> |
-  <%= link_to "Back to aircrafts", aircrafts_path %>
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.datetime_field :date %>
+  </div>
 
-  <%= button_to "Destroy this aircraft", @aircraft, method: :delete %>
-</div>
+  <div>
+    <%= form.label :departure_icao, style: "display: block" %>
+    <%= form.text_field :departure_icao %>
+  </div>
+
+  <div>
+    <%= form.label :arrival_icao, style: "display: block" %>
+    <%= form.text_field :arrival_icao %>
+  </div>
+
+  <div>
+    <%= form.label :duration, style: "display: block" %>
+    <%= form.text_field :duration %>
+  </div>
+
+  <div>
+    <%= form.label :pilot_in_command_id, style: "display: block" %>
+    <%= form.text_field :pilot_in_command_id %>
+  </div>
+
+  <div>
+    <%= form.label :second_in_command_id, style: "display: block" %>
+    <%= form.text_field :second_in_command_id %>
+  </div>
+
+  <div>
+    <%= form.label :flt_training, style: "display: block" %>
+    <%= form.text_field :flt_training %>
+  </div>
+
+  <div>
+    <%= form.label :ground_training, style: "display: block" %>
+    <%= form.text_field :ground_training %>
+  </div>
+
+  <div>
+    <%= form.label :simulator, style: "display: block" %>
+    <%= form.text_field :simulator %>
+  </div>
+
+  <div>
+    <%= form.label :cross_country, style: "display: block" %>
+    <%= form.text_field :cross_country %>
+  </div>
+
+  <div>
+    <%= form.label :time_of_day, style: "display: block" %>
+    <%= form.number_field :time_of_day %>
+  </div>
+
+  <div>
+    <%= form.label :actual_instrument, style: "display: block" %>
+    <%= form.text_field :actual_instrument %>
+  </div>
+
+  <div>
+    <%= form.label :simulated_instrument, style: "display: block" %>
+    <%= form.text_field :simulated_instrument %>
+  </div>
+
+  <div>
+    <%= form.label :day_landing, style: "display: block" %>
+    <%= form.number_field :day_landing %>
+  </div>
+
+  <div>
+    <%= form.label :night_landing, style: "display: block" %>
+    <%= form.number_field :night_landing %>
+  </div>
+
+  <div>
+    <%= form.label :single_engine_land, style: "display: block" %>
+    <%= form.number_field :single_engine_land %>
+  </div>
+
+  <div>
+    <%= form.label :multi_engine_land, style: "display: block" %>
+    <%= form.number_field :multi_engine_land %>
+  </div>
+
+  <div>
+    <%= form.label :notes, style: "display: block" %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

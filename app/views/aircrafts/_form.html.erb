@@ -12,6 +12,22 @@
   <% end %>
 
   <div>
+    <%= form.label :make, style: "display: block" %>
+    <%= form.text_field :make %>
+  </div>
+
+  <div>
+    <%= form.label :model, style: "display: block" %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div>
+    <%= form.label :engine, style: "display: block" %>
+    <%= form.select(:engine, [['Single', 'single'], ['Multi', 'multi']]) %>
+  </div>
+  
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

@@ -8,6 +8,7 @@ class AircraftsController < ApplicationController
 
   # GET /aircrafts/1 or /aircrafts/1.json
   def show
+    @logbook_entry = LogbookEntry.find_by(id: params[:id])
   end
 
   # GET /aircrafts/new
@@ -49,7 +50,7 @@ class AircraftsController < ApplicationController
 
   # DELETE /aircrafts/1 or /aircrafts/1.json
   def destroy
-    @aircraft.destroy!
+    @aircraft.destroy
 
     respond_to do |format|
       format.html { redirect_to aircrafts_url, notice: "Aircraft was successfully destroyed." }
@@ -65,6 +66,6 @@ class AircraftsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def aircraft_params
-      params.fetch(:aircraft, {})
+      params.require(:aircraft).permit(:make, :model, :engine)
     end
 end

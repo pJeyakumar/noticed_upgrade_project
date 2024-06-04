@@ -49,7 +49,7 @@ class LogbookEntriesController < ApplicationController
 
   # DELETE /logbook_entries/1 or /logbook_entries/1.json
   def destroy
-    @logbook_entry.destroy!
+    @logbook_entry.destroy
 
     respond_to do |format|
       format.html { redirect_to logbook_entries_url, notice: "Logbook entry was successfully destroyed." }
@@ -65,6 +65,6 @@ class LogbookEntriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def logbook_entry_params
-      params.fetch(:logbook_entry, {})
+      params.require(:logbook_entry).permit(:date, :departure_icao, :arrival_icao, :duration, :pilot_in_command_id, :second_in_command_id, :flt_training, :ground_training, :simulator, :cross_country, :time_of_day, :actual_instrument, :simulated_instrument, :day_landing, :night_landing, :single_engine_land, :multi_engine_land, :notes)
     end
 end
