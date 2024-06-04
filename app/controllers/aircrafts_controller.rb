@@ -8,7 +8,6 @@ class AircraftsController < ApplicationController
 
   # GET /aircrafts/1 or /aircrafts/1.json
   def show
-    @logbook_entry = LogbookEntry.find_by(id: params[:id])
   end
 
   # GET /aircrafts/new
