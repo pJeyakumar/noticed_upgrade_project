@@ -1,4 +1,4 @@
-class CreateLogbookEntries < ActiveRecord::Migration[7.0]
+class CreateLogbookEntries < ActiveRecord::Migration[7.1]
   def change
     create_table :logbook_entries do |t|
       t.references :aircraft, foreign_key: { to_table: :aircrafts }
