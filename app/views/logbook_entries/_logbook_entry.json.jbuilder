@@ -1,0 +1,2 @@
+json.extract! logbook_entry, :id, :date, :departure_icao, :arrival_icao, :duration, :pilot_in_command_id, :second_in_command_id, :flt_training, :ground_training, :simulator, :cross_country, :time_of_day, :actual_instrument, :simulated_instrument, :day_landing, :night_landing, :single_engine_land, :multi_engine_land, :notes, :created_at, :updated_at
+json.url logbook_entry_url(logbook_entry, format: :json)

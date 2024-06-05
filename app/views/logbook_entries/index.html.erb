@@ -1,0 +1,31 @@
+
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-between">
+    <h1 class="my-4">Your Logbook Entries</h1>
+    <div>
+      <%= link_to "Create a Logbook Entry", new_logbook_entry_path, class: "btn btn-success" %>
+    </div>
+  </div>
+
+  <div id="logbooks" class="row">
+    <% @logbook_entries.each do |logbook_entry| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <%= render logbook_entry %>
+            <p class="mt-2">
+              <%= link_to "Show this logbook entry", logbook_entry, class: "btn btn-primary" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

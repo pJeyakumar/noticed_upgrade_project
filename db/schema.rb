@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_03_204250) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_04_142554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_204250) do
   end
 
   create_table "logbook_entries", force: :cascade do |t|
+    t.bigint "aircraft_id"
     t.datetime "date"
     t.string "departure_icao"
     t.string "arrival_icao"
@@ -43,6 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_204250) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["aircraft_id"], name: "index_logbook_entries_on_aircraft_id"
     t.index ["pilot_in_command_id"], name: "index_logbook_entries_on_pilot_in_command_id"
     t.index ["second_in_command_id"], name: "index_logbook_entries_on_second_in_command_id"
   end
@@ -50,12 +52,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_204250) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "email"
     t.string "title"
     t.string "company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "logbook_entries", "aircrafts"
   add_foreign_key "logbook_entries", "users", column: "pilot_in_command_id"
   add_foreign_key "logbook_entries", "users", column: "second_in_command_id"
 end

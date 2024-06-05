@@ -1,0 +1,92 @@
+<div id="<%= dom_id logbook_entry %>">
+  <p>
+    <strong>Date:</strong>
+    <%= logbook_entry.date %>
+  </p>
+
+  <p>
+    <strong>Departure icao:</strong>
+    <%= logbook_entry.departure_icao %>
+  </p>
+
+  <p>
+    <strong>Arrival icao:</strong>
+    <%= logbook_entry.arrival_icao %>
+  </p>
+
+  <p>
+    <strong>Duration:</strong>
+    <%= logbook_entry.duration %>
+  </p>
+
+  <p>
+    <strong>Pilot in command:</strong>
+    <%= User.find_by(id: logbook_entry.pilot_in_command_id).first_name %>
+  </p>
+
+  <p>
+    <strong>Second in command:</strong>
+    <%= User.find_by(id: logbook_entry.second_in_command_id)&.first_name %>
+  </p>
+
+  <p>
+    <strong>Flt training:</strong>
+    <%= logbook_entry.flt_training %>
+  </p>
+
+  <p>
+    <strong>Ground training:</strong>
+    <%= logbook_entry.ground_training %>
+  </p>
+
+  <p>
+    <strong>Simulator:</strong>
+    <%= logbook_entry.simulator %>
+  </p>
+
+  <p>
+    <strong>Cross country:</strong>
+    <%= logbook_entry.cross_country %>
+  </p>
+
+  <p>
+    <strong>Time of day:</strong>
+    <%= logbook_entry.time_of_day %>
+  </p>
+
+  <p>
+    <strong>Actual instrument:</strong>
+    <%= logbook_entry.actual_instrument %>
+  </p>
+
+  <p>
+    <strong>Simulated instrument:</strong>
+    <%= logbook_entry.simulated_instrument %>
+  </p>
+
+  <p>
+    <strong>Day landing:</strong>
+    <%= logbook_entry.day_landing %>
+  </p>
+
+  <p>
+    <strong>Night landing:</strong>
+    <%= logbook_entry.night_landing %>
+  </p>
+
+  <p>
+    <strong>Single engine land:</strong>
+    <%= logbook_entry.single_engine_land %>
+  </p>
+
+  <p>
+    <strong>Multi engine land:</strong>
+    <%= logbook_entry.multi_engine_land %>
+  </p>
+
+  <p>
+    <strong>Notes:</strong>
+    <%= logbook_entry.notes %>
+  </p>
+
+</div>

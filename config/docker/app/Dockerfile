@@ -11,7 +11,8 @@ RUN apk update \
     git \
     postgresql-client \ 
     libpq-dev \
-    libc6-compat
+    libc6-compat \ 
+    nodejs
 
 # Expose Puma port
 EXPOSE 3000

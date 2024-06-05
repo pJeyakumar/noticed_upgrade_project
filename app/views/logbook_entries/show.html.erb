@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <%= render @logbook_entry %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div>
+      <%= link_to "Edit this logbook entry", edit_logbook_entry_path(@logbook_entry), class: "btn btn-primary me-2" %>
+      <%= link_to "Back to logbook entries", logbook_entries_path, class: "btn btn-secondary" %>
+    </div>
+    <%= button_to "Destroy this logbook entry", @logbook_entry, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>
+</div>
