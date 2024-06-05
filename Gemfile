@@ -36,7 +36,7 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 gem "sassc-rails"
-gem 'bootstrap', '~> 5.3', '>= 5.3.3'
+gem "bootstrap", "~> 5.3", ">= 5.3.3"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data"
@@ -46,9 +46,6 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
-
-# Byebug
-gem 'pry-byebug'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
