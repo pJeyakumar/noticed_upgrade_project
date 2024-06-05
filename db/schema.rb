@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_151856) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_04_142554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,11 +47,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_151856) do
     t.index ["aircraft_id"], name: "index_logbook_entries_on_aircraft_id"
     t.index ["pilot_in_command_id"], name: "index_logbook_entries_on_pilot_in_command_id"
     t.index ["second_in_command_id"], name: "index_logbook_entries_on_second_in_command_id"
-  end
-
-  create_table "pilots", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
