@@ -1,10 +1,4 @@
-<h1>Editing logbook entry</h1>
-
-<%= render "form", logbook_entry: @logbook_entry %>
-
-<br>
-
-<div>
-  <%= link_to "Show this logbook entry", @logbook_entry %> |
-  <%= link_to "Back to logbook entries", logbook_entries_path %>
+<div class="container mt-4">  
+  <h1 class="my-4">Editing Logbook Entry</h1>
+  <%= render "form", logbook_entry: @logbook_entry %>
 </div>
