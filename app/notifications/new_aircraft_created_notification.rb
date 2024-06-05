@@ -1,5 +1,3 @@
-
-
 class NewAircraftCreatedNotification < Noticed::Base
 
   deliver_by :database, debug: true
