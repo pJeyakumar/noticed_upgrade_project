@@ -3,6 +3,12 @@ class Aircraft < ApplicationRecord
   validates :make, presence: true
   validates :model, presence: true
 
+  after_create_commit :notify_user
+
+  def notify_user
+    NewAircraftCreatedNotification.with(aircraft: self).deliver_later(NewAircraftCreatedNotification.targets)
+  end
+
   enum engine: {
     single: 0,
     multi: 1
