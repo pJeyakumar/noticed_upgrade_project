@@ -8,4 +8,5 @@ The purpose of this project is to determine what changes will be need to made on
 3. Make sure you have the `Dev Containers` extension installed!
 4. Press Cmd + Shift + P => Type "Dev Containers: Rebuild Container" and select the first option.
 5. Run `bundle install`
-6. Run `bin/rails s -b 0.0.0.0` and go to the URL specified in your terminal
+6. Run `rails db:create db:migrate`
+7. Run `bin/rails s -b 0.0.0.0` and go to the URL specified in your terminal
