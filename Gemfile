@@ -72,3 +72,6 @@ end
 # notifications
 gem "noticed", "~> 1.6.0"
 
+# Letter Opener Gem - View emails locally
+gem "letter_opener", "~> 1.4", ">= 1.4.1"
+
