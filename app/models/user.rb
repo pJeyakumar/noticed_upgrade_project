@@ -5,4 +5,8 @@ class User < ApplicationRecord
     validates :email, presence: true
 
     has_many :notifications, as: :recipient, dependent: :destroy
+    has_noticed_notifications
+    has_noticed_notifications param_name: :assigned_to, destroy: false, model_name: "Notification"
+    has_noticed_notifications param_name: :requester, destroy: false, model_name: "Notification"
+    has_noticed_notifications param_name: :granted_by, destroy: false, model_name: "Notification"
 end

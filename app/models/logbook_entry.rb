@@ -9,6 +9,12 @@ class LogbookEntry < ApplicationRecord
     validates :aircraft_id, presence: true
     validates :pilot_in_command_id, presence: true
     validates :time_of_day, presence: true
+
+    after_create_commit :notify_user
+
+    def notify_user
+      NewLogbookEntryCreatedNotification.with(logbook_entry: self).deliver_later(NewLogbookEntryCreatedNotification.targets)
+    end
   
     enum time_of_day: {
       day: 0,
