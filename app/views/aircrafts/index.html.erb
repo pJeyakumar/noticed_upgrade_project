@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Aircrafts</h1>
-
-<div id="aircrafts">
-  <% @aircrafts.each do |aircraft| %>
-    <%= render aircraft %>
-    <p>
-      <%= link_to "Show this aircraft", aircraft %>
-    </p>
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
   <% end %>
-</div>
 
-<%= link_to "New aircraft", new_aircraft_path %>
+  <h1 class="my-4">Aircrafts</h1>
+
+  <div class="mb-4">
+    <%= link_to "Create an Aircraft", new_aircraft_path, class: "btn btn-success" %>
+  </div>
+
+  <div id="aircrafts" class="row">
+    <% @aircrafts.each do |aircraft| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <%= render aircraft %>
+            <p class="mt-2">
+              <%= link_to "Show this aircraft", aircraft, class: "btn btn-primary" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,14 +1,30 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Logbook entries</h1>
-
-<div id="logbook_entries">
-  <% @logbook_entries.each do |logbook_entry| %>
-    <%= render logbook_entry %>
-    <p>
-      <%= link_to "Show this logbook entry", logbook_entry %>
-    </p>
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
   <% end %>
+
+  <h1 class="my-4">Logbook Entries</h1>
+
+  <div class="mb-4 flex-row justify-content-end">
+    <%= link_to "Create a Logbook Entry", new_logbook_entry_path, class: "btn btn-success" %>
+  </div>
+
+  <div id="logbooks" class="row">
+    <% @logbook_entries.each do |logbook_entry| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <%= render logbook_entry %>
+            <p class="mt-2">
+              <%= link_to "Show this logbook entry", logbook_entry, class: "btn btn-primary" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "New logbook entry", new_logbook_entry_path %>
