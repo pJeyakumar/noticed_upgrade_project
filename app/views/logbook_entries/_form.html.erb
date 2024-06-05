@@ -1,112 +1,133 @@
-<%= form_with(model: logbook_entry) do |form| %>
+<%= form_with(model: logbook_entry, local: true, class: "needs-validation", novalidate: true) do |form| %>
   <% if logbook_entry.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(logbook_entry.errors.count, "error") %> prohibited this logbook_entry from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(logbook_entry.errors.count, "error") %> prohibited this logbook entry from being saved:</h4>
       <ul>
-        <% logbook_entry.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% logbook_entry.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.datetime_field :date %>
+  <div class="mb-3">
+    <%= form.label :date, class: "form-label" %>
+    <%= form.datetime_field :date, class: "form-control", required: true %>
+    <div class="invalid-feedback">
+      Please provide a valid date.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :departure_icao, style: "display: block" %>
-    <%= form.text_field :departure_icao %>
+  <div class="mb-3">
+    <%= form.label :departure_icao, class: "form-label" %>
+    <%= form.text_field :departure_icao, class: "form-control", required: true %>
+    <div class="invalid-feedback">
+      Please provide the departure ICAO code.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :arrival_icao, style: "display: block" %>
-    <%= form.text_field :arrival_icao %>
+  <div class="mb-3">
+    <%= form.label :arrival_icao, class: "form-label" %>
+    <%= form.text_field :arrival_icao, class: "form-control", required: true %>
+    <div class="invalid-feedback">
+      Please provide the arrival ICAO code.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :duration, style: "display: block" %>
-    <%= form.text_field :duration %>
+  <div class="mb-3">
+    <%= form.label :duration, class: "form-label" %>
+    <%= form.text_field :duration, class: "form-control", required: true %>
+    <div class="invalid-feedback">
+      Please provide the duration.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :aircraft_id, style: "display: block" %>
-    <%= form.select :aircraft_id, Aircraft.all.pluck(:id) %>
+  <div class="mb-3">
+    <%= form.label :aircraft_id, class: "form-label" %>
+    <%= form.select :aircraft_id, Aircraft.all.pluck(:id), {}, { class: "form-select", required: true } %>
+    <div class="invalid-feedback">
+      Please select an aircraft.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :pilot_in_command_id, style: "display: block" %>
-    <%= form.select :pilot_in_command_id, User.all.pluck(:id) %>
+  <div class="mb-3">
+    <%= form.label :pilot_in_command_id, class: "form-label" %>
+    <%= form.select :pilot_in_command_id, User.all.pluck(:id), {}, { class: "form-select", required: true } %>
+    <div class="invalid-feedback">
+      Please select the pilot in command.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :second_in_command_id, style: "display: block" %>
-    <%= form.select :second_in_command_id, User.all.pluck(:id) %>
+  <div class="mb-3">
+    <%= form.label :second_in_command_id, class: "form-label" %>
+    <%= form.select :second_in_command_id, User.all.pluck(:id), {}, { class: "form-select" } %>
   </div>
 
-  <div>
-    <%= form.label :flt_training, style: "display: block" %>
-    <%= form.text_field :flt_training %>
+  <div class="mb-3">
+    <%= form.label :flt_training, class: "form-label" %>
+    <%= form.text_field :flt_training, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :ground_training, style: "display: block" %>
-    <%= form.text_field :ground_training %>
+  <div class="mb-3">
+    <%= form.label :ground_training, class: "form-label" %>
+    <%= form.text_field :ground_training, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :simulator, style: "display: block" %>
-    <%= form.text_field :simulator %>
+  <div class="mb-3">
+    <%= form.label :simulator, class: "form-label" %>
+    <%= form.text_field :simulator, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :cross_country, style: "display: block" %>
-    <%= form.text_field :cross_country %>
+  <div class="mb-3">
+    <%= form.label :cross_country, class: "form-label" %>
+    <%= form.text_field :cross_country, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :time_of_day, style: "display: block" %>
-    <%= form.select(:time_of_day, [['Day', 'day'], ['Night', 'Night']]) %>
+  <div class="mb-3">
+    <%= form.label :time_of_day, class: "form-label" %>
+    <%= form.select :time_of_day, [['Day', 'day'], ['Night', 'night']], {}, { class: "form-select", required: true } %>
+    <div class="invalid-feedback">
+      Please select the time of day.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :actual_instrument, style: "display: block" %>
-    <%= form.text_field :actual_instrument %>
+  <div class="mb-3">
+    <%= form.label :actual_instrument, class: "form-label" %>
+    <%= form.text_field :actual_instrument, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :simulated_instrument, style: "display: block" %>
-    <%= form.text_field :simulated_instrument %>
+  <div class="mb-3">
+    <%= form.label :simulated_instrument, class: "form-label" %>
+    <%= form.text_field :simulated_instrument, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :day_landing, style: "display: block" %>
-    <%= form.number_field :day_landing %>
+  <div class="mb-3">
+    <%= form.label :day_landing, class: "form-label" %>
+    <%= form.number_field :day_landing, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :night_landing, style: "display: block" %>
-    <%= form.number_field :night_landing %>
+  <div class="mb-3">
+    <%= form.label :night_landing, class: "form-label" %>
+    <%= form.number_field :night_landing, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :single_engine_land, style: "display: block" %>
-    <%= form.number_field :single_engine_land %>
+  <div class="mb-3">
+    <%= form.label :single_engine_land, class: "form-label" %>
+    <%= form.number_field :single_engine_land, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :multi_engine_land, style: "display: block" %>
-    <%= form.number_field :multi_engine_land %>
+  <div class="mb-3">
+    <%= form.label :multi_engine_land, class: "form-label" %>
+    <%= form.number_field :multi_engine_land, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :notes, style: "display: block" %>
-    <%= form.text_area :notes %>
+  <div class="mb-3">
+    <%= form.label :notes, class: "form-label" %>
+    <%= form.text_area :notes, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="d-flex justify-content-end mb-3">
+    <%= link_to "Back to logbook entries", logbook_entries_path, class: "btn btn-secondary me-3" %>
+    <%= form.submit "Save Logbook Entry", class: "btn btn-primary" %>
   </div>
 <% end %>

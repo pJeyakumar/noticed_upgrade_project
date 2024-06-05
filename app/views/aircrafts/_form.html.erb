@@ -1,33 +1,41 @@
-<%= form_with(model: aircraft) do |form| %>
+<%= form_with(model: aircraft, local: true, class: "needs-validation", novalidate: true) do |form| %>
   <% if aircraft.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(aircraft.errors.count, "error") %> prohibited this aircraft from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(aircraft.errors.count, "error") %> prohibited this aircraft from being saved:</h4>
       <ul>
-        <% aircraft.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% aircraft.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :make, style: "display: block" %>
-    <%= form.text_field :make %>
+  <div class="mb-3">
+    <%= form.label :make, class: "form-label" %>
+    <%= form.text_field :make, class: "form-control", required: true %>
+    <div class="invalid-feedback">
+      Please provide the make of the aircraft.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :model, style: "display: block" %>
-    <%= form.text_field :model %>
+  <div class="mb-3">
+    <%= form.label :model, class: "form-label" %>
+    <%= form.text_field :model, class: "form-control", required: true %>
+    <div class="invalid-feedback">
+      Please provide the model of the aircraft.
+    </div>
   </div>
 
-  <div>
-    <%= form.label :engine, style: "display: block" %>
-    <%= form.select(:engine, [['Single', 'single'], ['Multi', 'multi']]) %>
+  <div class="mb-3">
+    <%= form.label :engine, class: "form-label" %>
+    <%= form.select :engine, [['Single', 'single'], ['Multi', 'multi']], {}, { class: "form-select", required: true } %>
+    <div class="invalid-feedback">
+      Please select an engine type.
+    </div>
   </div>
-  
 
-  <div>
-    <%= form.submit %>
+  <div class="d-flex justify-content-end mb-3">
+  <%= link_to "Back to aircrafts", aircrafts_path, class: "btn btn-secondary me-3" %>
+    <%= form.submit "Save Aircraft", class: "btn btn-primary" %>
   </div>
 <% end %>
