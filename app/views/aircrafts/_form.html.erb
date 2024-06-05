@@ -28,7 +28,7 @@
 
   <div class="mb-3">
     <%= form.label :engine, class: "form-label" %>
-    <%= form.select :engine, [['Single', 'single'], ['Multi', 'multi']], {}, { class: "form-select", required: true } %>
+    <%= form.select :engine, [['Single', 'single'], ['Multi', 'multi']], {include_blank: true}, { class: "form-select" } %>
     <div class="invalid-feedback">
       Please select an engine type.
     </div>
