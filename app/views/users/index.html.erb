@@ -5,10 +5,11 @@
     </div>
   <% end %>
 
-  <h1 class="my-4">Users</h1>
-
-  <div class="mb-4">
-    <%= link_to "Create a User", new_user_path, class: "btn btn-success" %>
+  <div class="d-flex justify-content-between">
+    <h1 class="my-4">Users</h1>
+    <div>
+      <%= link_to "Create a User", new_user_path, class: "btn btn-success" %>
+    </div>
   </div>
 
   <div id="users" class="row">

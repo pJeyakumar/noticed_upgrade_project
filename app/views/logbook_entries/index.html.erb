@@ -6,10 +6,11 @@
     </div>
   <% end %>
 
-  <h1 class="my-4">Logbook Entries</h1>
-
-  <div class="mb-4 flex-row justify-content-end">
-    <%= link_to "Create a Logbook Entry", new_logbook_entry_path, class: "btn btn-success" %>
+  <div class="d-flex justify-content-between">
+    <h1 class="my-4">Your Logbook Entries</h1>
+    <div>
+      <%= link_to "Create a Logbook Entry", new_logbook_entry_path, class: "btn btn-success" %>
+    </div>
   </div>
 
   <div id="logbooks" class="row">

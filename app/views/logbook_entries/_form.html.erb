@@ -44,7 +44,7 @@
 
   <div class="mb-3">
     <%= form.label :aircraft_id, class: "form-label" %>
-    <%= form.select :aircraft_id, Aircraft.all.pluck(:id), {}, { class: "form-select", required: true } %>
+    <%= form.select :aircraft_id, Aircraft.all.pluck(:model, :id), {}, { class: "form-select", required: true } %>
     <div class="invalid-feedback">
       Please select an aircraft.
     </div>
@@ -52,7 +52,7 @@
 
   <div class="mb-3">
     <%= form.label :pilot_in_command_id, class: "form-label" %>
-    <%= form.select :pilot_in_command_id, User.all.pluck(:id), {}, { class: "form-select", required: true } %>
+    <%= form.select :pilot_in_command_id, User.all.pluck(:first_name, :id), {}, { class: "form-select", required: true } %>
     <div class="invalid-feedback">
       Please select the pilot in command.
     </div>
@@ -60,7 +60,7 @@
 
   <div class="mb-3">
     <%= form.label :second_in_command_id, class: "form-label" %>
-    <%= form.select :second_in_command_id, User.all.pluck(:id), {}, { class: "form-select" } %>
+    <%= form.select :second_in_command_id, User.all.pluck(:first_name, :id), {include_blank: true}, { class: "form-select" } %>
   </div>
 
   <div class="mb-3">

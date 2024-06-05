@@ -21,12 +21,12 @@
 
   <p>
     <strong>Pilot in command:</strong>
-    <%= logbook_entry.pilot_in_command_id %>
+    <%= User.find_by(id: logbook_entry.pilot_in_command_id).first_name %>
   </p>
 
   <p>
     <strong>Second in command:</strong>
-    <%= logbook_entry.second_in_command_id %>
+    <%= User.find_by(id: logbook_entry.second_in_command_id)&.first_name %>
   </p>
 
   <p>
