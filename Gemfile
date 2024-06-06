@@ -73,5 +73,6 @@ end
 gem "noticed", "~> 1.6.0"
 
 # Letter Opener Gem - View emails locally
-gem "letter_opener", "~> 1.4", ">= 1.4.1"
-
+group :development do
+  gem 'letter_opener_web', '~> 3.0'
+end

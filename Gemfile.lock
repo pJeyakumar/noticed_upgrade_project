@@ -143,6 +143,11 @@ GEM
       childprocess (~> 5.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
+    letter_opener_web (3.0.0)
+      actionmailer (>= 6.1)
+      letter_opener (~> 1.9)
+      railties (>= 6.1)
+      rexml
     llhttp-ffi (0.5.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
@@ -291,7 +296,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
-  letter_opener (~> 1.4, >= 1.4.1)
+  letter_opener_web (~> 3.0)
   noticed (~> 1.6.0)
   pg (~> 1.1)
   puma (>= 5.0)
