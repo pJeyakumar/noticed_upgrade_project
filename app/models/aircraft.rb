@@ -15,6 +15,6 @@ class Aircraft < ApplicationRecord
   }
 
   def to_s
-    make + " " + model
+    make + model
   end
 end

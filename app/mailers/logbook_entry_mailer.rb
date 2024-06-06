@@ -7,13 +7,11 @@ class LogbookEntryMailer < ApplicationMailer
     # has_history extra: -> { {sent: true, messageable: @aircraft} }
   
     def created_email 
-      @pilot_in_command = User.find_by(id: @logbook_entry.pilot_in_command_id).first_name
-      mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New Logbook Entry By: #{@pilot_in_command}")
+      mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New Logbook Entry By: #{@logbook_entry.pilot_in_command}")
     end
 
     def updated_email
-      @pilot_in_command = User.find_by(id: @logbook_entry.pilot_in_command_id).first_name
-      mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] Updated #{@pilot_in_command}'s Logbook Entry")
+      mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] Updated #{@logbook_entry.pilot_in_command}'s Logbook Entry")
     end
   
     private

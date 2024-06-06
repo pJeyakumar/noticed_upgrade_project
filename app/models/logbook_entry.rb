@@ -13,6 +13,13 @@ class LogbookEntry < ApplicationRecord
   after_create_commit :notify_creation_to_user
   after_update :notify_update_to_user
 
+  enum time_of_day: {
+    day: 0,
+    night: 1
+  }
+
+  private 
+
   def notify_creation_to_user
     NewLogbookEntryCreatedNotification.with(logbook_entry: self).deliver_later(NewLogbookEntryCreatedNotification.targets)
   end
@@ -20,9 +27,4 @@ class LogbookEntry < ApplicationRecord
   def notify_update_to_user
     LogbookEntryUpdatedNotification.with(logbook_entry: self).deliver_later(LogbookEntryUpdatedNotification.targets)
   end
-
-  enum time_of_day: {
-    day: 0,
-    night: 1
-  }
 end

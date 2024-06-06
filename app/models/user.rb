@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_noticed_notifications param_name: :requester, destroy: false, model_name: "Notification"
   has_noticed_notifications param_name: :granted_by, destroy: false, model_name: "Notification"
 
-  def full_name
-    first_name + " " + last_name
+  def to_s
+    "#{first_name} #{last_name}"
   end
 end

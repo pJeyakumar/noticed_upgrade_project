@@ -9,8 +9,7 @@ class LogbookEntryUpdatedNotification < Noticed::Base
   param :logbook_entry
 
   def message
-    aircraft_model = Aircraft.find_by(id: params[:logbook_entry].aircraft_id).model
-    "#{params[:logbook_entry].first_name}'s #{params[:logbook_entry].date} logbook entry has been updated for their flight sim on the #{aircraft_model}."
+    "#{params[:logbook_entry].first_name}'s #{params[:logbook_entry].date} logbook entry has been updated for their flight sim on the #{params[:logbook_entry].aircraft.name}}."
   end
 
   def url
