@@ -2,13 +2,18 @@ class LogbookEntryMailer < ApplicationMailer
     before_action :set_user
     before_action :set_logbook_entry
   
-    track_clicks campaign: "logbook_entry_created_email", only: %i[created_email]
+    # track_clicks campaign: "logbook_entry_created_email", only: %i[created_email]
   
-    has_history extra: -> { {sent: true, messageable: @aircraft} }
+    # has_history extra: -> { {sent: true, messageable: @aircraft} }
   
     def created_email 
       @pilot_in_command = User.find_by(id: @logbook_entry.pilot_in_command_id).first_name
       mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New Logbook Entry By: #{@pilot_in_command}")
+    end
+
+    def updated_email
+      @pilot_in_command = User.find_by(id: @logbook_entry.pilot_in_command_id).first_name
+      mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] Updated #{@pilot_in_command}'s Logbook Entry")
     end
   
     private

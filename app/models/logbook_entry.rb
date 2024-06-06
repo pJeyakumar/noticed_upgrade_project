@@ -1,23 +1,28 @@
 class LogbookEntry < ApplicationRecord
-    belongs_to :aircraft
-    belongs_to :pilot_in_command, class_name: "User", optional: false
-    belongs_to :second_in_command, class_name: "User", optional: true
-    validates :date, presence: true
-    validates :departure_icao, presence: true
-    validates :arrival_icao, presence: true
-    validates :duration, presence: true
-    validates :aircraft_id, presence: true
-    validates :pilot_in_command_id, presence: true
-    validates :time_of_day, presence: true
+  belongs_to :aircraft
+  belongs_to :pilot_in_command, class_name: "User", optional: false
+  belongs_to :second_in_command, class_name: "User", optional: true
+  validates :date, presence: true
+  validates :departure_icao, presence: true
+  validates :arrival_icao, presence: true
+  validates :duration, presence: true
+  validates :aircraft_id, presence: true
+  validates :pilot_in_command_id, presence: true
+  validates :time_of_day, presence: true
 
-    after_create_commit :notify_user
+  after_create_commit :notify_creation_to_user
+  after_update :notify_update_to_user
 
-    def notify_user
-      NewLogbookEntryCreatedNotification.with(logbook_entry: self).deliver_later(NewLogbookEntryCreatedNotification.targets)
-    end
-  
-    enum time_of_day: {
-      day: 0,
-      night: 1
-    }
+  def notify_creation_to_user
+    NewLogbookEntryCreatedNotification.with(logbook_entry: self).deliver_later(NewLogbookEntryCreatedNotification.targets)
+  end
+
+  def notify_update_to_user
+    LogbookEntryUpdatedNotification.with(logbook_entry: self).deliver_later(LogbookEntryUpdatedNotification.targets)
+  end
+
+  enum time_of_day: {
+    day: 0,
+    night: 1
+  }
 end

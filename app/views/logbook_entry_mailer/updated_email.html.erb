@@ -1,0 +1,7 @@
+<p>Hello <%= @user.full_name %>,</p>
+<br/>
+
+<p> <%= @pilot_in_command %>'s logbook entry has been updated! </p>
+<br/>
+
+<%= link_to "Check it out here", logbook_entry_url(@logbook_entry) %>
