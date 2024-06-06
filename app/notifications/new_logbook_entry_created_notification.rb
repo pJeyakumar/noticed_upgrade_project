@@ -8,9 +8,7 @@ class NewLogbookEntryCreatedNotification < Noticed::Base
   param :logbook_entry
 
   def message
-    aircraft_model = Aircraft.find_by(id: params[:logbook_entry].aircraft_id).model
-    pilot_in_command = User.find_by(id: params[:logbook_entry]).first_name
-    "#{pilot_in_command} has created a logbook entry for their flight sim on the #{aircraft_model}."
+    "#{params[:logbook_entry].pilot_in_command}} has created a logbook entry for their flight sim on the #{params[:logbook_entry].aircraft}."
   end
 
   def url
