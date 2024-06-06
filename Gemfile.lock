@@ -104,10 +104,16 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.5.1)
     domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.12.0)
     execjs (2.9.1)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     ffi (1.17.0-aarch64-linux-musl)
     ffi (1.17.0-x86_64-linux-musl)
     ffi-compiler (1.3.2)
@@ -224,6 +230,23 @@ GEM
       io-console (~> 0.5)
     rexml (3.2.8)
       strscan (>= 3.0.9)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.2)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
+    rspec-support (3.13.1)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -283,12 +306,14 @@ DEPENDENCIES
   bootstrap (~> 5.3, >= 5.3.3)
   capybara
   debug
+  factory_bot_rails
   importmap-rails
   jbuilder
   noticed (~> 1.6.0)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.3)
+  rspec-rails
   sassc-rails
   selenium-webdriver
   sprockets-rails
