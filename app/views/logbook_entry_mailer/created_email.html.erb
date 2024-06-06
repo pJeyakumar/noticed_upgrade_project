@@ -1,0 +1,7 @@
+<p>Hello <%= @user %>,</p>
+<br/>
+
+<p>A Logbook Entry has been created for <%= @logbook_entry.pilot_in_command %> in the flight simulator.</p>
+<br/>
+
+<%= link_to "Check it out here", logbook_entry_url(@logbook_entry) %>
