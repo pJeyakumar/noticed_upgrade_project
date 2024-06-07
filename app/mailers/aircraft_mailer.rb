@@ -4,7 +4,7 @@ class AircraftMailer < ApplicationMailer
 
 
   def created_email
-    mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New Aircraft Created: #{@aircraft.name}")
+    mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New Aircraft Created: #{@aircraft}")
   end
 
   private

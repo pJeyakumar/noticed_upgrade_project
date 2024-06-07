@@ -21,7 +21,7 @@ class User < ApplicationRecord
   private
 
   def notify_creation_to_user
-    UserSingUpNotification.with(event_user: self).deliver_later(UserSingUpNotification.targets)
+    UserSignUpNotification.with(event_user: self).deliver_later(UserSignUpNotification.targets)
   end
 
   def notify_update_to_user

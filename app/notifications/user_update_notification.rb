@@ -14,7 +14,7 @@ class UserUpdateNotification < Noticed::Base
   param :event_user
 
   def message
-    "The user #{params[:event_user].to_s} - #{params[:event_user].email} has been updated."
+    "The user #{params[:event_user]} - #{params[:event_user].email} has been updated."
   end
 
   def url

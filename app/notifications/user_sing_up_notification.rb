@@ -1,4 +1,4 @@
-class UserSingUpNotification < Noticed::Base
+class UserSignUpNotification < Noticed::Base
 
   deliver_by :database, debug: true
 
@@ -14,7 +14,7 @@ class UserSingUpNotification < Noticed::Base
   param :event_user
 
   def message
-    "A new user #{params[:event_user]} with email #{params[:event_user].email} has been Sign Up."
+    "A new user #{params[:event_user]} with email #{params[:event_user].email} has been signed up."
   end
 
   def url
