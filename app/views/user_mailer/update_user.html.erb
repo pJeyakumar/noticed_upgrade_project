@@ -1,0 +1,7 @@
+<p>Hello <%= @user %>,</p>
+<br />
+
+<p> The user <%= @event_user.to_s %> has been updated.</p>
+<br />
+
+<%= link_to "Check it out here" , users_url(@event_user) %>
