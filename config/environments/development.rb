@@ -42,8 +42,24 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-
   config.action_mailer.perform_caching = false
+
+  # SMTP Email delivery settings for prod or staging
+  
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   port: 587,
+  #   domain: 'example.com',
+  #   user_name: '<your-email>@gmail.com',
+  #   password: '<your-password>',
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
+
+  # Emails checking for development using web
+  config.action_mailer.delivery_method = :letter_opener_web
+
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
