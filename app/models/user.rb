@@ -5,4 +5,10 @@ class User < ApplicationRecord
     validates :email, presence: true
 
     has_many :notifications, as: :recipient, dependent: :destroy
+
+    def full_name
+        "#{first_name} #{last_name}"
+    end
+
+
 end
