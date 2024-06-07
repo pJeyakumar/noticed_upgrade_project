@@ -21,10 +21,22 @@ RSpec.describe NewAircraftCreatedNotification, type: :model do
       FactoryBot.create(:user, first_name: "Sally")
       FactoryBot.create(:aircraft)
       expect(Notification.last.recipient.first_name).to eq("Sally")
+    
+    # make sure it goes to all users
+    # 
+    
     end
 
     # it 'uses the correct notification template'
     #   # todo ...
     # end
+
+
+    # is the notification the right type
+
+
+    # does this object exist, ... 
+
+
   end
 end
