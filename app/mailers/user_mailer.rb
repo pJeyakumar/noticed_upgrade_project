@@ -22,6 +22,6 @@ class UserMailer < ApplicationMailer
   end
 
   def set_event_user
-    @event_user = params[:event_user]
+    @event_user = params[:recipient]
   end  
 end
