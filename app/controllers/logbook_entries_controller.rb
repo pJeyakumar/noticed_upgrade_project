@@ -25,11 +25,11 @@ class LogbookEntriesController < ApplicationController
 
     respond_to do |format|
       if @logbook_entry.save
-        format.html { redirect_to logbook_entry_url(@logbook_entry), notice: I18n.t('notices.logbook_entry.created') }
-        format.json { render :show, status: :created, location: @logbook_entry }
+        format.html { redirect_to(logbook_entry_url(@logbook_entry), notice: I18n.t("notices.logbook_entry.created")) }
+        format.json { render(:show, status: :created, location: @logbook_entry) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @logbook_entry.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @logbook_entry.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -38,11 +38,11 @@ class LogbookEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @logbook_entry.update(logbook_entry_params)
-        format.html { redirect_to logbook_entry_url(@logbook_entry), notice: I18n.t('notices.logbook_entry.updated') }
-        format.json { render :show, status: :ok, location: @logbook_entry }
+        format.html { redirect_to(logbook_entry_url(@logbook_entry), notice: I18n.t("notices.logbook_entry.updated")) }
+        format.json { render(:show, status: :ok, location: @logbook_entry) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @logbook_entry.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @logbook_entry.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -52,8 +52,8 @@ class LogbookEntriesController < ApplicationController
     @logbook_entry.destroy
 
     respond_to do |format|
-      format.html { redirect_to logbook_entries_url, notice: I18n.t('notices.logbook_entry.destroyed') }
-      format.json { head :no_content }
+      format.html { redirect_to(logbook_entries_url, notice: I18n.t("notices.logbook_entry.destroyed")) }
+      format.json { head(:no_content) }
     end
   end
 

@@ -6,8 +6,8 @@ class UserMailer < ApplicationMailer
   before_action :set_event_user
   
   def welcome_email(user)  
-    @url  = 'http://example.com/login'    
-    mail(to: user.email, subject: I18n.t('mailer.welcome'))
+    @url  = "http://example.com/login"    
+    mail(to: user.email, subject: I18n.t("mailer.welcome"))
   end
 
   def created_user

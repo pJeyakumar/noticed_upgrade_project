@@ -25,11 +25,11 @@ class AircraftsController < ApplicationController
 
     respond_to do |format|
       if @aircraft.save
-        format.html { redirect_to aircraft_url(@aircraft), notice: I18n.t('notices.aircraft.created') }
-        format.json { render :show, status: :created, location: @aircraft }
+        format.html { redirect_to(aircraft_url(@aircraft), notice: I18n.t("notices.aircraft.created")) }
+        format.json { render(:show, status: :created, location: @aircraft) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @aircraft.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @aircraft.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -38,11 +38,11 @@ class AircraftsController < ApplicationController
   def update
     respond_to do |format|
       if @aircraft.update(aircraft_params)
-        format.html { redirect_to aircraft_url(@aircraft), notice: I18n.t('notices.aircraft.updated') }
-        format.json { render :show, status: :ok, location: @aircraft }
+        format.html { redirect_to(aircraft_url(@aircraft), notice: I18n.t("notices.aircraft.updated")) }
+        format.json { render(:show, status: :ok, location: @aircraft) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @aircraft.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @aircraft.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -52,8 +52,8 @@ class AircraftsController < ApplicationController
     @aircraft.destroy
 
     respond_to do |format|
-      format.html { redirect_to aircrafts_url, notice: I18n.t('notices.aircraft.destroyed') }
-      format.json { head :no_content }
+      format.html { redirect_to(aircrafts_url, notice: I18n.t("notices.aircraft.destroyed")) }
+      format.json { head(:no_content) }
     end
   end
 

@@ -1,1 +1,1 @@
-json.partial! "aircrafts/aircraft", aircraft: @aircraft
+json.partial!("aircrafts/aircraft", aircraft: @aircraft)

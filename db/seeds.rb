@@ -1,6 +1,6 @@
 # db/seeds.rb
 
-require 'faker'
+require "faker"
 
 # Create Users
 10.times do
