@@ -25,7 +25,7 @@ class AircraftsController < ApplicationController
 
     respond_to do |format|
       if @aircraft.save
-        format.html { redirect_to aircraft_url(@aircraft), notice: "Aircraft was successfully created." }
+        format.html { redirect_to aircraft_url(@aircraft), notice: I18n.t('notices.aircraft.created') }
         format.json { render :show, status: :created, location: @aircraft }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class AircraftsController < ApplicationController
   def update
     respond_to do |format|
       if @aircraft.update(aircraft_params)
-        format.html { redirect_to aircraft_url(@aircraft), notice: "Aircraft was successfully updated." }
+        format.html { redirect_to aircraft_url(@aircraft), notice: I18n.t('notices.aircraft.updated') }
         format.json { render :show, status: :ok, location: @aircraft }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class AircraftsController < ApplicationController
     @aircraft.destroy
 
     respond_to do |format|
-      format.html { redirect_to aircrafts_url, notice: "Aircraft was successfully destroyed." }
+      format.html { redirect_to aircrafts_url, notice: I18n.t('notices.aircraft.destroyed') }
       format.json { head :no_content }
     end
   end

@@ -25,7 +25,7 @@ class LogbookEntriesController < ApplicationController
 
     respond_to do |format|
       if @logbook_entry.save
-        format.html { redirect_to logbook_entry_url(@logbook_entry), notice: "Logbook entry was successfully created." }
+        format.html { redirect_to logbook_entry_url(@logbook_entry), notice: I18n.t('notices.logbook_entry.created') }
         format.json { render :show, status: :created, location: @logbook_entry }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class LogbookEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @logbook_entry.update(logbook_entry_params)
-        format.html { redirect_to logbook_entry_url(@logbook_entry), notice: "Logbook entry was successfully updated." }
+        format.html { redirect_to logbook_entry_url(@logbook_entry), notice: I18n.t('notices.logbook_entry.updated') }
         format.json { render :show, status: :ok, location: @logbook_entry }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class LogbookEntriesController < ApplicationController
     @logbook_entry.destroy
 
     respond_to do |format|
-      format.html { redirect_to logbook_entries_url, notice: "Logbook entry was successfully destroyed." }
+      format.html { redirect_to logbook_entries_url, notice: I18n.t('notices.logbook_entry.destroyed') }
       format.json { head :no_content }
     end
   end

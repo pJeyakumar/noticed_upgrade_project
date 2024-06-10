@@ -1,5 +1,5 @@
 class Aircraft < ApplicationRecord
-  has_many :logbook_entries
+  has_many :logbook_entries, dependent: :destroy
   validates :make, presence: true
   validates :model, presence: true
 
