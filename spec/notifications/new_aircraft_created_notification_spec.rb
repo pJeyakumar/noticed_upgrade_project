@@ -2,40 +2,53 @@ require 'rails_helper'
 
 RSpec.describe NewAircraftCreatedNotification, type: :model do
 
-  # Must eagerly create a user first, or notifications will not be created
-  let!(:user) { FactoryBot.create(:user) }
-
-  let!(:aircraft) { FactoryBot.create(:aircraft) }
-  
   context 'when aircraft are created' do
     it 'creates notifications' do
+
+      # Must eagerly create a user first, or notifications will not be created
+      user = FactoryBot.create(:user)
+      aircraft = FactoryBot.create(:aircraft)
+
+      # TODO: instead of count, very actual contents of notifications
+      # Note also, notifications temporarily set to User.all
+
       expect(aircraft).to be_valid
       expect(user).to be_valid
-      expect(Notification.count).to be(1)
+      expect(Notification.count).to be(3)
 
-      FactoryBot.create(:aircraft) 
-      expect(Notification.count).to be(2)
+      FactoryBot.create(:aircraft)
+      expect(Notification.count).to be(4)
     end
 
     it 'notifies the correct user' do
+      # Note, notification is temporarily User.All
       FactoryBot.create(:user, first_name: "Sally")
       FactoryBot.create(:aircraft)
       expect(Notification.last.recipient.first_name).to eq("Sally")
-    
-    # make sure it goes to all users
-    # 
-    
     end
 
-    # it 'uses the correct notification template'
-    #   # todo ...
-    # end
+    it 'the notification is the correct type' do
+
+      # New Aircraft
+      FactoryBot.create(:aircraft)
+      expect(Notification.last.recipient_type).to eq("User")
+
+      # Logbook entry updated
+      FactoryBot.create(:logbook_entry)
+      expect(Notification.last.type).to eq("NewLogbookEntryCreatedNotification")
 
 
-    # is the notification the right type
+      # Logbook entry created
 
+      # User signup
 
-    # does this object exist, ... 
+      # User update
+
+    end
+
+    #   # it 'uses the correct notification template'
+    #   #   # todo ...
+    #   # end
 
 
   end
