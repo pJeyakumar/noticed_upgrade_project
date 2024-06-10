@@ -1,4 +1,7 @@
 class LogbookEntryMailer < ApplicationMailer
+    has_history
+    track_clicks campaign: "log-book-entry-emails-campaign"
+
     before_action :set_user
     before_action :set_logbook_entry
   

@@ -65,7 +65,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "faker"
-  
+
   # Rubocop
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
@@ -79,3 +79,9 @@ end
 
 # notifications
 gem "noticed", "~> 1.6.0"
+
+# ahoy_matey
+gem 'ahoy_matey'
+
+# ahoy_email
+gem 'ahoy_email'
