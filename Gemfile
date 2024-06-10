@@ -75,3 +75,6 @@ end
 
 # notifications
 gem "noticed", "~> 1.6.0"
+
+# Bootstrap Form
+gem "bootstrap_form", "~> 2.3"
