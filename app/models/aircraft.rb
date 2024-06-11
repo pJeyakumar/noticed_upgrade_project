@@ -1,5 +1,5 @@
 class Aircraft < ApplicationRecord
-  has_many :logbook_entries
+  has_many :logbook_entries, dependent: :destroy
   validates :make, presence: true
   validates :model, presence: true
 
@@ -7,7 +7,6 @@ class Aircraft < ApplicationRecord
 
   def notify_user
     NewAircraftCreatedNotification.with(aircraft: self).deliver_later(NewAircraftCreatedNotification.targets)
-    
   end
 
   enum engine: {
