@@ -109,5 +109,3 @@ gem "ahoy_email", "~> 2.3.0"
 
 # Bootstrap Form
 gem "bootstrap_form"
-
-

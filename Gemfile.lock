@@ -365,6 +365,7 @@ DEPENDENCIES
   ahoy_matey (~> 5.1.0)
   bootsnap (~> 1.18.3)
   bootstrap (~> 5.3, >= 5.3.3)
+  bootstrap_form
   capybara (~> 3.40.0)
   debug (~> 1.9.2)
   faker (~> 3.4.1)
