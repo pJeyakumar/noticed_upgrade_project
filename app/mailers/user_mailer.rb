@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
   has_history
-  track_clicks campaign: "users-emails-campaign"
+  track_clicks campaign: "users_emails_campaign"
 
   before_action :set_user
   before_action :set_event_user

@@ -1,6 +1,6 @@
 class AircraftMailer < ApplicationMailer
   has_history
-  track_clicks campaign: "aircraft-email-campaign"
+  track_clicks campaign: "aircraft_email_campaign"
 
   before_action :set_user
   before_action :set_aircraft
