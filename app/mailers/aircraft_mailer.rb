@@ -5,7 +5,6 @@ class AircraftMailer < ApplicationMailer
   before_action :set_user
   before_action :set_aircraft
 
-
   def created_email
     mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New Aircraft Created: #{@aircraft}")
   end

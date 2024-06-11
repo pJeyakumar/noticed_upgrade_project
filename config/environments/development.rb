@@ -18,7 +18,7 @@ Rails.application.configure do
   config.server_timing = true
 
   Rails.application.routes.default_url_options[:host] = "localhost:3000"
-  
+
   config.action_mailer.delivery_method = :letter_opener_web
 
   # Enable/disable caching. By default caching is disabled.
@@ -45,7 +45,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # SMTP Email delivery settings for prod or staging
-  
+
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
   #   address: 'smtp.gmail.com',
@@ -59,7 +59,6 @@ Rails.application.configure do
 
   # Emails checking for development using web
   config.action_mailer.delivery_method = :letter_opener_web
-
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

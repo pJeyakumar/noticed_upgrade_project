@@ -5,7 +5,6 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   has_many :notifications, as: :recipient, dependent: :destroy
-  
 
   has_noticed_notifications
   has_noticed_notifications param_name: :assigned_to, destroy: false, model_name: "Notification"
@@ -14,7 +13,7 @@ class User < ApplicationRecord
 
   after_create_commit :notify_creation_to_user
   after_update :notify_update_to_user
-  
+
   def to_s
     "#{first_name} #{last_name}"
   end

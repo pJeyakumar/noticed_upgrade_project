@@ -2,7 +2,7 @@ class LogbookEntry < ApplicationRecord
   belongs_to :aircraft
   belongs_to :pilot_in_command, class_name: "User", optional: false, inverse_of: :logbook_entries
   belongs_to :second_in_command, class_name: "User", optional: true
-  
+
   validates :date, presence: true
   validates :departure_icao, presence: true
   validates :arrival_icao, presence: true
@@ -18,7 +18,7 @@ class LogbookEntry < ApplicationRecord
     night: 1
   }
 
-  private 
+  private
 
   def notify_creation_to_user
     NewLogbookEntryCreatedNotification.with(logbook_entry: self).deliver_later(NewLogbookEntryCreatedNotification.targets)

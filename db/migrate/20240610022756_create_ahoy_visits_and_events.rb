@@ -46,7 +46,7 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[7.1]
     end
 
     add_index(:ahoy_visits, :visit_token, unique: true)
-    add_index(:ahoy_visits, [:visitor_token, :started_at])
+    add_index(:ahoy_visits, %i[visitor_token started_at])
 
     create_table(:ahoy_events) do |t|
       t.references(:visit)
@@ -57,7 +57,7 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[7.1]
       t.datetime(:time)
     end
 
-    add_index(:ahoy_events, [:name, :time])
+    add_index(:ahoy_events, %i[name time])
     add_index(:ahoy_events, :properties, using: :gin, opclass: :jsonb_path_ops)
   end
 end

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root "logbook_entries#index"
 
   mount LetterOpenerWeb::Engine, at: "/mail" if Rails.env.development?

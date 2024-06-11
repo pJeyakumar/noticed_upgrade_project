@@ -1,5 +1,5 @@
 class AircraftsController < ApplicationController
-  before_action :set_aircraft, only: %i[ show edit update destroy ]
+  before_action :set_aircraft, only: %i[show edit update destroy]
 
   # GET /aircrafts or /aircrafts.json
   def index
@@ -58,13 +58,14 @@ class AircraftsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_aircraft
-      @aircraft = Aircraft.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def aircraft_params
-      params.require(:aircraft).permit(:make, :model, :engine)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_aircraft
+    @aircraft = Aircraft.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def aircraft_params
+    params.require(:aircraft).permit(:make, :model, :engine)
+  end
 end
