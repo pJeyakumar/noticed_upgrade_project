@@ -1,0 +1,43 @@
+.centered-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  /* Adds margin to push the form down from the navbar */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Adds shadow to the form */
+}
+
+.centered-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.form-links .btn-link {
+  padding: 0;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.form-links .btn-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.form-links .btn-link:focus {
+  box-shadow: none;
+}
+
+.navbar-text.user-email {
+  margin-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
