@@ -106,3 +106,8 @@ gem "ahoy_matey", "~> 5.1.0"
 
 # ahoy_email
 gem "ahoy_email", "~> 2.3.0"
+
+# Bootstrap Form
+gem "bootstrap_form"
+
+
