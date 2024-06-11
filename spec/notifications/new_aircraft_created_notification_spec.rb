@@ -27,6 +27,35 @@ RSpec.describe NewAircraftCreatedNotification, type: :model do
       expect(Notification.last.recipient.first_name).to eq("Sally")
     end
 
+    it 'generates mail' do
+
+      FactoryBot.create(:user, first_name: "Sally")
+
+      # FactoryBot.create(:aircraft)
+      expect { FactoryBot.create(:aircraft) }.to have_enqueued_job(NewAircraftCreatedNotification).on_queue('default').exactly(:once)
+
+      print
+
+      # FactoryBot.create(:aircraft)
+      #
+      # # expect { FactoryBot.create(:aircraft) }.to change { AircraftMailer.deliveries.count }.by(1)
+
+      #
+      # # expect { FactoryBot.create(:aircraft) }.to change { AircraftMailer.deliveries.count }.by(1)
+      # expect { FactoryBot.create(:aircraft) }.to(
+      #   have_enqueued_job.on_queue('default').with(
+      #     'YourMailer', 'your_method', 'deliver_now',
+      #     )
+      # )
+      #
+      # # THIS WORKS
+      # expect {
+      #   FactoryBot.create(:aircraft)
+      # }.to change {
+      #   ActiveJob::Base.queue_adapter.enqueued_jobs.count
+      # }.by 1
+    end
+
     it 'the notification is the correct type' do
 
       # New Aircraft
@@ -37,11 +66,14 @@ RSpec.describe NewAircraftCreatedNotification, type: :model do
       FactoryBot.create(:logbook_entry)
       expect(Notification.last.type).to eq("NewLogbookEntryCreatedNotification")
 
-
       # Logbook entry created
 
       # User signup
+      FactoryBot.create(:user)
+      expect(Notification.last.type).to eq("UserSignUpNotification")
 
+      # creates 2 notofications, both type UserSignUpNotification
+      # why 2? maybe after_create and after_update both firing? likely... they have the same data
       # User update
 
     end
@@ -49,7 +81,6 @@ RSpec.describe NewAircraftCreatedNotification, type: :model do
     #   # it 'uses the correct notification template'
     #   #   # todo ...
     #   # end
-
 
   end
 end

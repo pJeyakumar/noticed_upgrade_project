@@ -7,7 +7,6 @@ class Aircraft < ApplicationRecord
 
   def notify_user
     NewAircraftCreatedNotification.with(aircraft: self).deliver_later(NewAircraftCreatedNotification.targets)
-    
   end
 
   enum engine: {
