@@ -1,9 +1,12 @@
 class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :logbook_entries, class_name: "LogbookEntry", foreign_key: "pilot_in_command_id"
+
+  has_many :logbook_entries, class_name: "LogbookEntry", foreign_key: "pilot_in_command_id", dependent: :destroy, inverse_of: :pilot_in_command
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true
@@ -17,7 +20,7 @@ class User < ApplicationRecord
 
   after_create_commit :notify_creation_to_user
   after_update :notify_update_to_user
-  
+
   def to_s
     "#{first_name} #{last_name}"
   end
