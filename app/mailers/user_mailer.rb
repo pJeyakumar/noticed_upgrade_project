@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
   end
 
   def update_user    
-    mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New Aircraft Created: #{@event_user}")
+    mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] User Updated: #{@event_user}")
   end
 
   private

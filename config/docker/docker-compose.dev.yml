@@ -1,7 +1,5 @@
 
 # <https://codewithhugo.com/docker-compose-local-https/>
-version: '3.6'
-
 volumes:
   postgres_data:
   bundle:

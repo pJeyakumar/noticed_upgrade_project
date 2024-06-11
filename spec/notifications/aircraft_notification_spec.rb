@@ -32,8 +32,16 @@ RSpec.describe NewAircraftCreatedNotification, type: :model do
       FactoryBot.create(:user, first_name: "Sally")
 
       # FactoryBot.create(:aircraft)
-      expect { FactoryBot.create(:aircraft) }.to have_enqueued_job(NewAircraftCreatedNotification).on_queue('default').exactly(:once)
+      # expect { FactoryBot.create(:aircraft) }.to have_enqueued_job(NewAircraftCreatedNotification).on_queue('default').exactly(:once)
+      #
+      # # Email Notification
+      # expect{ FactoryBot.create(:aircraft) }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      #
+      # email = ActionMailer::Base.deliveries.last
+      # expect(email.subject).to include("[DIGITAL FLIGHT SIM] New Aircraft Created:") # replace by translated comment
 
+
+      expect{ FactoryBot.create(:aircraft) }.to change { Notification.count }.by(1)
       print
 
       # FactoryBot.create(:aircraft)
@@ -56,7 +64,18 @@ RSpec.describe NewAircraftCreatedNotification, type: :model do
       # }.by 1
     end
 
-    it 'the notification is the correct type' do
+
+    it 'generates a prpoer email payload' do
+
+      FactoryBot.create(:user, first_name: "Sally")
+      FactoryBot.create(:aircraft)
+
+      email = AircraftMailer.deliveries.last
+      expect(email.to).to include(user.email)
+      expect(email.subject).to include('New Aircraft Created')
+    end
+
+      it 'the notification is the correct type' do
 
       # New Aircraft
       FactoryBot.create(:aircraft)

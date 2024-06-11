@@ -39,7 +39,7 @@ Rails.application.configure do
 
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 
-  config.active_job.queue_adapter = :test
+  config.active_job.queue_adapter = :inline
 
   config.action_mailer.perform_caching = false
 
