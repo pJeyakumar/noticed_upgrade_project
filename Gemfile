@@ -79,3 +79,7 @@ gem "noticed", "~> 1.6.0"
 # Authentication
 gem "devise", "~> 4.9.4"
 gem "pundit", "~> 2.3.2"
+
+# Bootstrap Form
+gem "bootstrap_form"
+
