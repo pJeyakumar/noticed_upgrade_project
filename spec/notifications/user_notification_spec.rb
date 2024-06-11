@@ -36,7 +36,6 @@ RSpec.describe UserUpdateNotification, type: :model do
     end
 
     it 'sends the proper email subject' do
-      ActionMailer::Base.deliveries.clear
       user.update(email: "new@email.com")
       email = ActionMailer::Base.deliveries.last
       expect(email.subject).to include("User Updated") # replace by translated comment
