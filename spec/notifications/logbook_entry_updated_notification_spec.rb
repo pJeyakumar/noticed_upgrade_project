@@ -15,7 +15,7 @@ RSpec.describe(LogbookEntryUpdatedNotification, type: :model) do
     it "uses the proper email subject" do
       logbook_entry.update(duration: 666)
       email = ActionMailer::Base.deliveries.last
-      expect(email.subject).to(include("s Logbook Entry")) # replace by translated comment
+      expect(email.subject).to(eq(I18n.t("mailer.logbook_entry.updated.subject", pilot: logbook_entry.pilot_in_command)))
     end
   end
 end

@@ -14,9 +14,9 @@ RSpec.describe(NewAircraftCreatedNotification, type: :model) do
     end
 
     it "sends the proper email subject" do
-      create(:aircraft)
+      aircraft = create(:aircraft)
       email = ActionMailer::Base.deliveries.last
-      expect(email.subject).to(include("New Aircraft Created")) # replace by translated comment
+      expect(email.subject).to(eq(I18n.t("mailer.aircraft.created.subject", aircraft: aircraft)))
     end
   end
 end

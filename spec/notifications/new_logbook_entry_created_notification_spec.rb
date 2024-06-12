@@ -13,9 +13,9 @@ RSpec.describe(NewLogbookEntryCreatedNotification, type: :model) do
     end
 
     it "uses the proper email subject" do
-      create(:logbook_entry)
+      logbook_entry = create(:logbook_entry)
       email = ActionMailer::Base.deliveries.last
-      expect(email.subject).to(include("New Logbook Entry By")) # replace by translated comment
+      expect(email.subject).to(eq( I18n.t("mailer.logbook_entry.created.subject", pilot: logbook_entry.pilot_in_command)))
     end
   end
 end

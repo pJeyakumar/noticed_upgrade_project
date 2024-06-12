@@ -19,7 +19,7 @@ en:
       created:
         subject: "[DIGITAL FLIGHT SIM] New User Created: %{email}"
       updated:
-        subject: "[DIGITAL FLIGHT SIM] User Updated: %{event_user}"
+        subject: "[DIGFITAL FLIGHT SIM] User Updated: %{event_user}"
     aircraft:
       created: 
         subject: "[DIGITAL FLIGHT SIM] New Aircraft Created: %{aircraft}"
