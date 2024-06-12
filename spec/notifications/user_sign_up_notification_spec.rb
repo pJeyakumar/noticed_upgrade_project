@@ -13,7 +13,7 @@ RSpec.describe(UserSignUpNotification, type: :model) do
     it "sends the proper email subject" do
       user = create(:user)
       email = ActionMailer::Base.deliveries.last
-      expect(email.subject).to(eq( I18n.t("mailer.user.created.subject", email: user.email)))
+      expect(email.subject).to(eq(I18n.t("mailer.user.created.subject", email: user.email)))
     end
   end
 end
