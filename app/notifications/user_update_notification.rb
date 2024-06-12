@@ -29,5 +29,4 @@ class UserUpdateNotification < Noticed::Base
   def self.targets
     User.all # TODO: TEMPORARY
   end
-
 end

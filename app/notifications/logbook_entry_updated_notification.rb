@@ -1,4 +1,3 @@
-
 class LogbookEntryUpdatedNotification < Noticed::Base
   deliver_by :database, if: :database_notifications?
   deliver_by :email, mailer: "LogbookEntryMailer", method: "updated_email", if: :email_notifications?
