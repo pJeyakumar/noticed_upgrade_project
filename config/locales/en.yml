@@ -13,4 +13,18 @@ en:
       updated: "User was successfully updated."
       destroyed: "User was successfully destroyed."
   mailer:
-    welcome: "Welcome to [DIGITAL FLIGHT SIM]"
+    user:
+      welcome:
+        subject: "Welcome to [DIGITAL FLIGHT SIM]"
+      created:
+        subject: "[DIGITAL FLIGHT SIM] New User Created: %{email}"
+      updated:
+        subject: "[DIGITAL FLIGHT SIM] User Updated: %{event_user}"
+    aircraft:
+      created: 
+        subject: "[DIGITAL FLIGHT SIM] New Aircraft Created: %{aircraft}"
+    logbook_entry:
+      created:
+        subject: "[DIGITAL FLIGHT SIM] New Logbook Entry By: %{pilot}"
+      updated:
+        subject: "[DIGITAL FLIGHT SIM] Updated %{pilot}'s Logbook Entry"

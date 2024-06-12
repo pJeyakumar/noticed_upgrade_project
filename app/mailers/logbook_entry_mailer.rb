@@ -6,11 +6,11 @@ class LogbookEntryMailer < ApplicationMailer
   before_action :set_logbook_entry
 
   def created_email
-    mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New Logbook Entry By: #{@logbook_entry.pilot_in_command}")
+    mail(to: @user.email, subject: I18n.t("mailer.logbook_entry.created.subject", pilot: @logbook_entry.pilot_in_command))
   end
 
   def updated_email
-    mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] Updated #{@logbook_entry.pilot_in_command}'s Logbook Entry")
+    mail(to: @user.email, subject: I18n.t("mailer.logbook_entry.updated.subject", pilot: @logbook_entry.pilot_in_command))
   end
 
   private

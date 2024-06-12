@@ -7,15 +7,15 @@ class UserMailer < ApplicationMailer
 
   def welcome_email(user)
     @url = "http://example.com/login"
-    mail(to: user.email, subject: I18n.t("mailer.welcome"))
+    mail(to: user.email, subject: I18n.t("mailer.user.welcome.subject"))
   end
 
   def created_user
-    mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] New User Created: #{@event_user.email}")
+    mail(to: @user.email, subject: I18n.t("mailer.user.created.subject", email: @event_user.email))
   end
 
   def update_user
-    mail(to: @user.email, subject: "[DIGITAL FLIGHT SIM] User Updated: #{@event_user}")
+    mail(to: @user.email, subject: I18n.t("mailer.user.updated.subject", event_user: @event_user))
   end
 
   private
