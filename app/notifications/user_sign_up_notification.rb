@@ -24,7 +24,7 @@ class UserSignUpNotification < Noticed::Base
   end
 
   def email_notifications?
-    DEFAULT_SEND_EMAIL_NOTIFICATION
+    DEFAULT_SEND_EMAIL_NOTIFICATION && Rails.application.config.send_email_notifications
   end
 
   def self.targets

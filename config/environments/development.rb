@@ -93,4 +93,6 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  # Add configuration for skipping email notifications based on environment variable
+  config.send_email_notifications = ENV["SEND_EMAIL_NOTIFICATIONS"] == "true"
 end
