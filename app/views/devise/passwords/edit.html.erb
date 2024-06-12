@@ -1,7 +1,7 @@
 <div class="centered-form">
   <h2>Change your password</h2>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "needs-validation", novalidate: true }) do |f| %>
+  <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, novalidate: true }) do |f| %>
     <% if resource.errors.any? %>
       <div class="alert alert-danger">
         <h4 class="alert-heading"><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h4>
@@ -13,26 +13,17 @@
       </div>
     <% end %>
 
-    
     <%= f.hidden_field :reset_password_token %>
 
     <div class="mb-3">
-      <%= f.label :password, "New password", class: "form-label" %>
+      <%= f.password_field :password, label: "New password", autofocus: true, autocomplete: "new-password", required: true %>
       <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-      <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", required: true %>
-      <div class="invalid-feedback">
-        Please provide a new password.
-      </div>
+        <small class="form-text text-muted"><%= @minimum_password_length %> characters minimum</small>
+      <% end %>      
     </div>
 
     <div class="mb-3">
-      <%= f.label :password_confirmation, "Confirm new password", class: "form-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
-      <div class="invalid-feedback">
-        Please confirm your new password.
-      </div>
+      <%= f.password_field :password_confirmation, label: "Confirm new password", autocomplete: "new-password", required: true %>      
     </div>
 
     <div class="d-flex justify-content-end mb-3">

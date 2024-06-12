@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'logbook_entries#index'
+  root "logbook_entries#index"
 
   mount LetterOpenerWeb::Engine, at: "/mail" if Rails.env.development?
 

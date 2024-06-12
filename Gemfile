@@ -101,9 +101,10 @@ end
 # notifications
 gem "noticed", "~> 1.6.0"
 
-
 # Authentication
 gem "devise", "~> 4.9.4"
+
+# Authorization
 gem "pundit", "~> 2.3.2"
 
 # ahoy_matey
@@ -112,6 +113,5 @@ gem "ahoy_matey", "~> 5.1.0"
 # ahoy_email
 gem "ahoy_email", "~> 2.3.0"
 
-
 # Bootstrap Form
-gem "bootstrap_form"
+gem "bootstrap_form", "~> 5.0.0"
