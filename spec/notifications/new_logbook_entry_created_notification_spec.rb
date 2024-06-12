@@ -9,7 +9,7 @@ RSpec.describe(NewLogbookEntryCreatedNotification, type: :model) do
 
     it "creates database notifications of the right type" do
       create(:logbook_entry)
-      # the first notification will be user created, the second notification will pertain to the logbook
+      # the first notification will be for the user created, the second notification will pertain to the logbook
       expect(Notification.all[1].type).to(eq("NewLogbookEntryCreatedNotification"))
     end
 
