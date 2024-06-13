@@ -1,7 +1,5 @@
 
 # <https://codewithhugo.com/docker-compose-local-https/>
-version: '3.6'
-
 volumes:
   postgres_data:
   bundle:
@@ -55,6 +53,10 @@ services:
       - ../docker/db/digitalaf-role.sql:/docker-entrypoint-initdb.d/digitalaf-role.sql
     networks:
       - noticed-flight-sim-net
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
   noticed_flight_sim_vite:
     build:
       context: ../
