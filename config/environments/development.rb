@@ -95,6 +95,4 @@ Rails.application.configure do
 
   # local host for emails
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  # Add configuration for skipping email notifications based on environment variable
-  config.send_email_notifications = ENV["SEND_EMAIL_NOTIFICATIONS"] == "true"
 end

@@ -4,7 +4,7 @@ class UserSignUpNotification < Noticed::Base
 
   # Variables that tells the system if it should send a notification if the recipient isn't subscribed
   DEFAULT_SEND_NOTIFICATION = true
-  DEFAULT_SEND_EMAIL_NOTIFICATION = true
+  DEFAULT_SEND_EMAIL_NOTIFICATION = false
 
   # Add required params
   param :event_user
@@ -22,7 +22,7 @@ class UserSignUpNotification < Noticed::Base
   end
 
   def email_notifications?
-    DEFAULT_SEND_EMAIL_NOTIFICATION && Rails.application.config.send_email_notifications
+    DEFAULT_SEND_EMAIL_NOTIFICATION
   end
 
   def self.targets

@@ -3,7 +3,7 @@ class LogbookEntryUpdatedNotification < Noticed::Base
   deliver_by :email, mailer: "LogbookEntryMailer", method: "updated_email", if: :email_notifications?
 
   DEFAULT_SEND_NOTIFICATION = true
-  DEFAULT_SEND_EMAIL_NOTIFICATION = true
+  DEFAULT_SEND_EMAIL_NOTIFICATION = false
 
   param :logbook_entry
 
@@ -20,7 +20,7 @@ class LogbookEntryUpdatedNotification < Noticed::Base
   end
 
   def email_notifications?
-    DEFAULT_SEND_EMAIL_NOTIFICATION && Rails.application.config.send_email_notifications
+    DEFAULT_SEND_EMAIL_NOTIFICATION
   end
 
   def self.targets

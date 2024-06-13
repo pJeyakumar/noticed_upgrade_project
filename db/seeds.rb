@@ -6,8 +6,13 @@ Aircraft.destroy_all
 User.destroy_all
 Notification.destroy_all
 
+USERS_COUNT = 10
+AIRCRAFT_NOTIFICATIONS_COUNT = 1000
+LOGBOOK_ENTRY_NOTIFICATIONS = 1000
+USER_NOTIFICATIONS = 100
+
 # Create Users
-10.times do
+USERS_COUNT.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -46,14 +51,14 @@ aircrafts = [
 # Create Aircrafts
 aircrafts.each do |aircraft_data|
   aircraft = Aircraft.create!(aircraft_data)
-  1000.times do
+  AIRCRAFT_NOTIFICATIONS_COUNT.times do
     notification = NewAircraftCreatedNotification.with(aircraft: aircraft)
     notification.deliver_later(NewAircraftCreatedNotification.targets)
   end
 end
 
 # Create Logbook Entries and Notifications
-1000.times do
+LOGBOOK_ENTRY_NOTIFICATIONS.times do
   logbook_entry = LogbookEntry.create!(
     aircraft: Aircraft.order("RANDOM()").first,
     pilot_in_command: users.sample,
@@ -73,7 +78,7 @@ end
 
 # Create 1000 UserSignUpNotification and UserUpdateNotification
 users.each do |user|
-  100.times do
+  USER_NOTIFICATIONS.times do
     sign_up_notification = UserSignUpNotification.with(event_user: user)
 
     sign_up_notification.deliver_later(UserSignUpNotification.targets)
@@ -84,4 +89,4 @@ users.each do |user|
   end
 end
 
-Rails.logger.debug("Seeded 10 users, 20 aircrafts, 1000 logbook entries, and 1000 of each notification.")
+Rails.logger.debug { "Seeded #{User.count} users, #{Aircraft.count} aircrafts, #{LogbookEntry.count} logbook entries, and #{Notification.count} notification." }

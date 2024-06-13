@@ -73,9 +73,6 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  # Add configuration for skipping email notifications based on environment variable
-  config.send_email_notifications = ENV["SEND_EMAIL_NOTIFICATIONS"] == "true"
-
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
