@@ -12,5 +12,5 @@ The purpose of this project is to determine what changes will be need to made on
 7. Run `bin/rails s -b 0.0.0.0` and go to the URL specified in your terminal
 
 ### To have some Data to Play
-8. Run `rails db:seed`
+1. Run `rails db:seed`
  
