@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+
   root "logbook_entries#index"
 
   mount LetterOpenerWeb::Engine, at: "/mail" if Rails.env.development?
