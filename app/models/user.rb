@@ -1,11 +1,13 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # rubocop:disable Naming/VariableNumber
   devise :database_authenticatable,
     :registerable,
     :recoverable,
     :rememberable,
-    :validatable
+    :validatable,
+    :omniauthable,
+    omniauth_providers: %i[facebook google_oauth2]
+  # rubocop:enable Naming/VariableNumber
 
   has_many :logbook_entries, class_name: "LogbookEntry", foreign_key: "pilot_in_command_id", dependent: :destroy, inverse_of: :pilot_in_command
 

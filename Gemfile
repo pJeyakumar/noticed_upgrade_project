@@ -104,6 +104,12 @@ gem "noticed", "~> 1.6.0"
 # Authentication
 gem "devise", "~> 4.9.4"
 
+# Omniauth
+gem "omniauth", "~> 2.1.2"
+
+# Omniauth-google-oauth2
+gem "omniauth-google-oauth2", "~> 1.1.2"
+
 # Authorization
 gem "pundit", "~> 2.3.2"
 

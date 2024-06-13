@@ -4,13 +4,15 @@ require "faker"
 
 # Create Users
 10.times do
-  User.create!(
+  user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     title: Faker::Job.title,
     company: Faker::Company.name
   )
+  user.password = user.password_confirmation = Faker::Internet.password
+  user.save!
 end
 
 # Aircraft data with adjusted engine types
