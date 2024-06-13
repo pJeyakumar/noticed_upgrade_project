@@ -6,7 +6,7 @@ RSpec.describe(NewLogbookEntryCreatedNotification, type: :model) do
   context "when logbook entries are created" do
     it "creates database notifications" do
       # Two notifications expected because a User must exist for a Logbook_Entry to be created
-      expect { logbook_entry }.to(change(Notification, :count).by(2))
+      expect { logbook_entry }.to(change(Notification.where(type: "NewLogbookEntryCreatedNotification"), :count).by(1))
     end
 
     it "creates database notifications of the right type" do
