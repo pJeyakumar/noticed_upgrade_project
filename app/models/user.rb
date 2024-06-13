@@ -1,5 +1,16 @@
 class User < ApplicationRecord
+  # rubocop:disable Naming/VariableNumber
+  devise :database_authenticatable,
+    :registerable,
+    :recoverable,
+    :rememberable,
+    :validatable,
+    :omniauthable,
+    omniauth_providers: %i[facebook google_oauth2]
+  # rubocop:enable Naming/VariableNumber
+
   has_many :logbook_entries, class_name: "LogbookEntry", foreign_key: "pilot_in_command_id", dependent: :destroy, inverse_of: :pilot_in_command
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true

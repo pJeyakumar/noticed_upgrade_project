@@ -1,6 +1,4 @@
 class UserSignUpNotification < Noticed::Base
-  deliver_by :database, debug: true
-
   deliver_by :database, if: :database_notifications?
   deliver_by :email, mailer: "UserMailer", method: "created_user", if: :email_notifications?
 

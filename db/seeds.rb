@@ -7,15 +7,16 @@ User.destroy_all
 Notification.destroy_all
 
 # Create Users
-users = 10.times.map do
-  user = User.create!(
+10.times do
+  user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     title: Faker::Job.title,
     company: Faker::Company.name
   )
-  user
+  user.password = user.password_confirmation = Faker::Internet.password
+  user.save!
 end
 
 # Aircraft data with adjusted engine types
