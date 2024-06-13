@@ -8,6 +8,9 @@ RSpec.describe(LogbookEntryUpdatedNotification, type: :model) do
       expect { logbook_entry.update(duration: 666) }.to(change(Notification, :count).by(1))
     end
 
+    # Ideally, this test would check the mailer queues using the have_enqueued_job matcher. A bug in Active Job
+    # prevents us using those matchers with the inline database. The bug is fixed and will be part of a future
+    # Rails release: https://github.com/rails/rails/pull/48585
     it "creates email notifications" do
       expect { logbook_entry.update(duration: 666) }.to(change { LogbookEntryMailer.deliveries.count }.by(1))
     end
