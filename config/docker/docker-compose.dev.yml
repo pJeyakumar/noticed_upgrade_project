@@ -43,6 +43,7 @@ services:
       - /tmp
     networks:
       - noticed-flight-sim-net
+    command: bash -c "bin/rails s -p 3000 -b '0.0.0.0'"
   noticed_flight_sim_db:
     image: postgres:11.6-alpine
     container_name: noticed_flight_sim_db

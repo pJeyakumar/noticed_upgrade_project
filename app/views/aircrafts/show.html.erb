@@ -13,7 +13,11 @@
 
   <div class="d-flex justify-content-between">
     <div>
-      <%= link_to "Edit this aircraft", edit_aircraft_path(@aircraft), class: "btn btn-primary me-2" %>
+
+      <% if policy(@aircraft).create? %>
+        <%= link_to "Edit this aircraft", edit_aircraft_path(@aircraft), class: "btn btn-primary me-2" %>
+      <% end %>
+
       <%= link_to "Back to aircrafts", aircrafts_path, class: "btn btn-secondary" %>
     </div>
     <%= button_to "Destroy this aircraft", @aircraft, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>

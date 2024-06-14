@@ -8,6 +8,7 @@ class AircraftsController < ApplicationController
 
   # GET /aircrafts/1 or /aircrafts/1.json
   def show
+    authorize(Aircraft)
   end
 
   # GET /aircrafts/new
