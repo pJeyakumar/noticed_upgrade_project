@@ -1,16 +1,19 @@
 require "rails_helper"
 
 describe AircraftPolicy do
-  subject { described_class }
+  subject(:policy) { described_class }
+
+  let(:aircraft) { build(:aircraft) }
+  let(:user) { create(:user) }
+  let(:admin) { create(:user, context: "app:dispatch:wing_admin") }
 
   permissions :create? do
-
     it "grants create if user is an admin" do
-      expect(subject).to permit(User.new(context: "app:dispatch:wing_admin"), Aircraft.new(make: "", model: ""))
+      expect(policy).to(permit(admin, aircraft.save))
     end
 
     it "denies create if user is not an admin" do
-      expect(subject).not_to permit(User.new(context: ""), Aircraft.new(make: "", model: ""))
+      expect(policy).not_to(permit(user, aircraft.save))
     end
   end
 end
