@@ -14,9 +14,8 @@
   <div class="d-flex justify-content-between">
     <div>
 
-      <% if policy(@aircraft).create? %>
-        <%= link_to "Edit this aircraft", edit_aircraft_path(@aircraft), class: "btn btn-primary me-2" %>
-      <% end %>
+      <%= link_to "Edit this aircraft", edit_aircraft_path(@aircraft),
+                  class: class_names("btn btn-primary me-2", { disabled: !policy(@aircraft).edit? }) %>
 
       <%= link_to "Back to aircrafts", aircrafts_path, class: "btn btn-secondary" %>
     </div>

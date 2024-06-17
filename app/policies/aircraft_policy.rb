@@ -1,8 +1,10 @@
 class AircraftPolicy < ApplicationPolicy
+  AIRCRAFT_PERM_STRING = "app:dispatch:wing_admin"
+
   def create?
-    user.context == "app:dispatch:wing_admin"
+    user.context == AIRCRAFT_PERM_STRING
   end
-  
+
   def index?
     true
   end
@@ -11,4 +13,7 @@ class AircraftPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    create?
+  end
 end

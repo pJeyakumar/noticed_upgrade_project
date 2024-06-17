@@ -29,6 +29,14 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def admin
+    (context == AircraftPolicy::AIRCRAFT_PERM_STRING) ? "1" : "0"
+  end
+
+  def admin=(value)
+    self.context = (value == "1") ? AircraftPolicy::AIRCRAFT_PERM_STRING : ""
+  end
+
   private
 
   def notify_creation_to_user

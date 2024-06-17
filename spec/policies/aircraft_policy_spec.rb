@@ -5,7 +5,7 @@ describe AircraftPolicy do
 
   let(:aircraft) { build(:aircraft) }
   let(:user) { create(:user) }
-  let(:admin) { create(:user, context: "app:dispatch:wing_admin") }
+  let(:admin) { create(:user, context: AircraftPolicy::AIRCRAFT_PERM_STRING) }
 
   permissions :create? do
     it "grants create if user is an admin" do
