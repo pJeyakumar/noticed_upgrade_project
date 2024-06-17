@@ -1,5 +1,8 @@
 require "faker"
 
+# Don't send emails during seed process.
+ActionMailer::Base.perform_deliveries = false
+
 # Clear existing data
 LogbookEntry.destroy_all
 Aircraft.destroy_all
