@@ -4,7 +4,7 @@ class NewAircraftCreatedNotification < Noticed::Base
 
   # Variables that tells the system if it should send a notification if the recipient isn't subscribed
   DEFAULT_SEND_NOTIFICATION = true
-  DEFAULT_SEND_EMAIL_NOTIFICATION = false
+  DEFAULT_SEND_EMAIL_NOTIFICATION = true
 
   # Add required params
   param :aircraft
