@@ -15,7 +15,7 @@ LOGBOOK_ENTRY_NOTIFICATIONS = 1000
 USER_NOTIFICATIONS = 100
 
 # Create Users
-USERS_COUNT.times do
+users = USERS_COUNT.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -80,7 +80,7 @@ LOGBOOK_ENTRY_NOTIFICATIONS.times do
 end
 
 # Create 1000 UserSignUpNotification and UserUpdateNotification
-users.each do |user|
+users.all.each do |user|
   USER_NOTIFICATIONS.times do
     sign_up_notification = UserSignUpNotification.with(event_user: user)
 
