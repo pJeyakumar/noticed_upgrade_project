@@ -29,6 +29,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def wing_admin
+    context == AircraftPolicy::WING_ADMIN_PERMISSION
+  end
+
   private
 
   def notify_creation_to_user
