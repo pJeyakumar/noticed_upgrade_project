@@ -29,13 +29,11 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def admin
-    (context == AircraftPolicy::AIRCRAFT_PERM_STRING) ? "1" : "0"
+  def wing_admin
+    context == AircraftPolicy::WING_ADMIN_PERMISSION
   end
 
-  def admin=(value)
-    self.context = (value == "1") ? AircraftPolicy::AIRCRAFT_PERM_STRING : ""
-  end
+
 
   private
 

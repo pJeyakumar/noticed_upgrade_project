@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_wing_admin, only: %i[create update]
 
   # GET /users or /users.json
   def index
@@ -58,6 +59,13 @@ class UsersController < ApplicationController
   end
 
   private
+  CHECKED = "1"
+  def set_wing_admin
+    # This manipulation is necessary because by default a checkbox does not provide a value if unchecked, by default.
+    # Therefore in the view we manually set string values for check and unchecked states.
+    wing_admin_checked = params[:user][:wing_admin] == CHECKED
+    @user.context = wing_admin_checked ? AircraftPolicy::WING_ADMIN_PERMISSION : ""
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -66,6 +74,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :title, :company, :admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :title, :company)
   end
 end
