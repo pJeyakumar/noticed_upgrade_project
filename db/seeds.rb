@@ -6,10 +6,10 @@ ActionMailer::Base.perform_deliveries = false
 # Clear existing data
 ActiveRecord::Base.connection.execute("TRUNCATE logbook_entries, aircrafts, users, notifications RESTART IDENTITY CASCADE")
 
-USERS_COUNT = 3
-AIRCRAFT_NOTIFICATIONS_COUNT = 10
-LOGBOOK_ENTRY_NOTIFICATIONS = 10
-USER_NOTIFICATIONS = 10
+USERS_COUNT = 10
+AIRCRAFT_NOTIFICATIONS_COUNT = 1000
+LOGBOOK_ENTRY_NOTIFICATIONS = 1000
+USER_NOTIFICATIONS = 100
 
 # Create Users
 users = USERS_COUNT.times.map do
