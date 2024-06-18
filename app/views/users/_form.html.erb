@@ -20,6 +20,8 @@
 
   <%= form.text_field :company, label: "Company" %>
 
+  <%= form.check_box :wing_admin, label: "Wing Admin" %>
+
   <div class="d-flex justify-content-end mb-3">
     <%= link_to "Back to Users", users_path, class: "btn btn-secondary me-3" %>
     <%= form.submit "Save User", class: "btn btn-primary" %>
