@@ -80,7 +80,7 @@ LOGBOOK_ENTRY_NOTIFICATIONS.times do
 end
 
 # Create 1000 UserSignUpNotification and UserUpdateNotification
-users.all.each do |user|
+users.each do |user|
   USER_NOTIFICATIONS.times do
     sign_up_notification = UserSignUpNotification.with(event_user: user)
 
