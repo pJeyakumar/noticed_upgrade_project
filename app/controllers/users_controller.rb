@@ -59,9 +59,11 @@ class UsersController < ApplicationController
   end
 
   private
+
   CHECKED = "1"
+
   def set_wing_admin
-    # This manipulation is necessary because by default a checkbox does not provide a value if unchecked, by default.
+    # This manipulation is necessary because by default a checkbox does not provide a value, if unchecked.
     # Therefore in the view we manually set string values for check and unchecked states.
     wing_admin_checked = params[:user][:wing_admin] == CHECKED
     @user.context = wing_admin_checked ? AircraftPolicy::WING_ADMIN_PERMISSION : ""
