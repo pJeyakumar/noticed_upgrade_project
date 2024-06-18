@@ -9,13 +9,13 @@ Aircraft.destroy_all
 User.destroy_all
 Notification.destroy_all
 
-USERS_COUNT = 10
-AIRCRAFT_NOTIFICATIONS_COUNT = 1000
-LOGBOOK_ENTRY_NOTIFICATIONS = 1000
-USER_NOTIFICATIONS = 100
+USERS_COUNT = 3
+AIRCRAFT_NOTIFICATIONS_COUNT = 10
+LOGBOOK_ENTRY_NOTIFICATIONS = 10
+USER_NOTIFICATIONS = 10
 
 # Create Users
-users = USERS_COUNT.times do
+users = USERS_COUNT.times.map do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -25,6 +25,7 @@ users = USERS_COUNT.times do
   )
   user.password = user.password_confirmation = Faker::Internet.password
   user.save!
+  user
 end
 
 # Aircraft data with adjusted engine types
@@ -83,11 +84,9 @@ end
 users.each do |user|
   USER_NOTIFICATIONS.times do
     sign_up_notification = UserSignUpNotification.with(event_user: user)
-
     sign_up_notification.deliver_later(UserSignUpNotification.targets)
 
     update_notification = UserUpdateNotification.with(event_user: user)
-
     update_notification.deliver_later(UserUpdateNotification.targets)
   end
 end
