@@ -4,10 +4,7 @@ require "faker"
 ActionMailer::Base.perform_deliveries = false
 
 # Clear existing data
-LogbookEntry.destroy_all
-Aircraft.destroy_all
-User.destroy_all
-Notification.destroy_all
+ActiveRecord::Base.connection.execute("TRUNCATE logbook_entries, aircrafts, users, notifications RESTART IDENTITY CASCADE")
 
 USERS_COUNT = 3
 AIRCRAFT_NOTIFICATIONS_COUNT = 10
