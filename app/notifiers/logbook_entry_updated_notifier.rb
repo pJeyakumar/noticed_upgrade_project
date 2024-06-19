@@ -1,6 +1,6 @@
-class NewLogbookEntryCreatedNotification < Noticed::Base
+class LogbookEntryUpdatedNotifier < Noticed::Base
   deliver_by :database, if: :database_notifications?
-  deliver_by :email, mailer: "LogbookEntryMailer", method: "created_email", if: :email_notifications?
+  deliver_by :email, mailer: "LogbookEntryMailer", method: "updated_email", if: :email_notifications?
 
   DEFAULT_SEND_NOTIFICATION = true
   DEFAULT_SEND_EMAIL_NOTIFICATION = true
@@ -8,7 +8,7 @@ class NewLogbookEntryCreatedNotification < Noticed::Base
   param :logbook_entry
 
   def message
-    "#{params[:logbook_entry].pilot_in_command}} has created a logbook entry for their flight sim on the #{params[:logbook_entry].aircraft}."
+    "#{params[:logbook_entry].pilot_in_command}'s #{params[:logbook_entry].date} logbook entry has been updated for their flight sim on the #{params[:logbook_entry].aircraft}}."
   end
 
   def url

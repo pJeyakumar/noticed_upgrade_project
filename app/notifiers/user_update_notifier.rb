@@ -1,4 +1,4 @@
-class UserUpdateNotification < Noticed::Base
+class UserUpdateNotifier < Noticed::Base
   deliver_by :database, if: :database_notifications?
   deliver_by :email, mailer: "UserMailer", method: "update_user", if: :email_notifications?
 
