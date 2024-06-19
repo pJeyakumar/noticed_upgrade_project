@@ -6,26 +6,28 @@ class NewAircraftCreatedNotifier < Noticed::Base
   DEFAULT_SEND_NOTIFICATION = true
   DEFAULT_SEND_EMAIL_NOTIFICATION = true
 
-  # Add required params
-  param :aircraft
+  # Add required required_params
+  required_param :aircraft
 
-  def message
-    "#{params[:aircraft].name} has been created for use in the flight sim."
-  end
+  notification_methods do
+    def message
+      "#{required_params[:aircraft].name} has been created for use in the flight sim."
+    end
 
-  def url
-    aircraft_path(params[:aircraft])
-  end
+    def url
+      aircraft_path(required_params[:aircraft])
+    end
 
-  def database_notifications?
-    DEFAULT_SEND_NOTIFICATION
-  end
+    def database_notifications?
+      DEFAULT_SEND_NOTIFICATION
+    end
 
-  def email_notifications?
-    DEFAULT_SEND_EMAIL_NOTIFICATION
-  end
+    def email_notifications?
+      DEFAULT_SEND_EMAIL_NOTIFICATION
+    end
 
-  def self.targets
-    User.all # TODO: TEMPORARY
+    def self.targets
+      User.all # TODO: TEMPORARY
+    end
   end
 end
