@@ -12,7 +12,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications/new
   def new
-    @notification = Notification.new
+    @notification = Noticed::Notification.new
   end
 
   # GET /notifications/1/edit
@@ -21,7 +21,7 @@ class NotificationsController < ApplicationController
 
   # POST /notifications or /notifications.json
   def create
-    @notification = Notification.new(notification_params)
+    @notification = Noticed::Notification.new(notification_params)
 
     respond_to do |format|
       if @notification.save
@@ -69,7 +69,7 @@ class NotificationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
-      @notification = Notification.find(params[:id])
+      @notification = Noticed::Notification.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
