@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: %i[ show edit update destroy mark_as_read toggle_read ]
+  before_action :set_notification, only: %i[ show edit update destroy toggle_read ]
 
   # GET /notifications or /notifications.json
   def index
