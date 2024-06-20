@@ -49,7 +49,7 @@ class NotificationsController < ApplicationController
 
   # PATCH/PUT /notifications/1/toggle_read or /notifications/1/toggle_read.json
   def toggle_read
-    @notification.read? ? @notification.mark_as_unread! : @notification.mark_as_read!
+    @notification.read? ? @notification.mark_as_unread : @notification.mark_as_read
 
     respond_to do |format|
       format.html { redirect_to notifications_path(), notice: "Notification has been marked as #{@notification.read? ? "read" : "unread"}!" }
