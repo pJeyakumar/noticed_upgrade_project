@@ -9,20 +9,22 @@ class NewAircraftCreatedNotifier < Noticed::Base
   # Add required params
   param :aircraft
 
-  def message
-    "#{params[:aircraft].model} has been created for use in the flight sim."
-  end
+  notification_methods do
+    def message
+      "#{params[:aircraft].model} has been created for use in the flight sim."
+    end
 
-  def url
-    aircraft_path(params[:aircraft])
-  end
+    def url
+      aircraft_path(params[:aircraft])
+    end
 
-  def database_notifications?
-    DEFAULT_SEND_NOTIFICATION
-  end
+    def database_notifications?
+      DEFAULT_SEND_NOTIFICATION
+    end
 
-  def email_notifications?
-    DEFAULT_SEND_EMAIL_NOTIFICATION
+    def email_notifications?
+      DEFAULT_SEND_EMAIL_NOTIFICATION
+    end
   end
 
   def self.targets

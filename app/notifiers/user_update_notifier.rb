@@ -9,20 +9,22 @@ class UserUpdateNotifier < Noticed::Base
   # Add required params
   param :event_user
 
-  def message
-    "The user #{params[:event_user]} - #{params[:event_user].email} has been updated."
-  end
+  notification_methods do
+    def message
+      "The user #{params[:event_user]} - #{params[:event_user].email} has been updated."
+    end
 
-  def url
-    user_path(params[:event_user])
-  end
+    def url
+      user_path(params[:event_user])
+    end
 
-  def database_notifications?
-    DEFAULT_SEND_NOTIFICATION
-  end
+    def database_notifications?
+      DEFAULT_SEND_NOTIFICATION
+    end
 
-  def email_notifications?
-    DEFAULT_SEND_EMAIL_NOTIFICATION
+    def email_notifications?
+      DEFAULT_SEND_EMAIL_NOTIFICATION
+    end
   end
 
   def self.targets

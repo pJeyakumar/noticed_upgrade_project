@@ -9,20 +9,22 @@ class UserSignUpNotifier < Noticed::Base
   # Add required params
   param :event_user
 
-  def message
-    "A new user #{params[:event_user]} with email #{params[:event_user].email} has been signed up."
-  end
+  notification_methods do
+    def message
+      "A new user #{params[:event_user]} with email #{params[:event_user].email} has been signed up."
+    end
 
-  def url
-    user_path(params[:event_user])
-  end
+    def url
+      user_path(params[:event_user])
+    end
 
-  def database_notifications?
-    DEFAULT_SEND_NOTIFICATION
-  end
+    def database_notifications?
+      DEFAULT_SEND_NOTIFICATION
+    end
 
-  def email_notifications?
-    DEFAULT_SEND_EMAIL_NOTIFICATION
+    def email_notifications?
+      DEFAULT_SEND_EMAIL_NOTIFICATION
+    end
   end
 
   def self.targets
