@@ -4,6 +4,10 @@
     <%= notification.type %>
   </p>
   <p>
+    <strong>Message:</strong>
+    <%= notification.to_notification.message %>
+  </p>
+  <p>
     <strong>Sent on:</strong>
     <%= notification.created_at.strftime("%B %d, %Y") %>
   </p>

@@ -10,7 +10,7 @@ class NewAircraftCreatedNotification < Noticed::Base
   param :aircraft
 
   def message
-    "#{params[:aircraft].name} has been created for use in the flight sim."
+    "#{params[:aircraft].model} has been created for use in the flight sim."
   end
 
   def url
