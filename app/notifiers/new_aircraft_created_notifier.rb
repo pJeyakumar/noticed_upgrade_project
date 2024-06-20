@@ -1,4 +1,4 @@
-class NewAircraftCreatedNotifier < Noticed::Base
+class NewAircraftCreatedNotifier < Noticed::Event
   deliver_by :database, if: :database_notifications?
   deliver_by :email, mailer: "AircraftMailer", method: "created_email", if: :email_notifications?
 

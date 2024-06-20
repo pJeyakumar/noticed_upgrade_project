@@ -1,4 +1,4 @@
-class NewLogbookEntryCreatedNotifier < Noticed::Base
+class NewLogbookEntryCreatedNotifier < Noticed::Event
   deliver_by :database, if: :database_notifications?
   deliver_by :email, mailer: "LogbookEntryMailer", method: "created_email", if: :email_notifications?
 
