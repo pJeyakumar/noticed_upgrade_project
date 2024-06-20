@@ -15,6 +15,9 @@
         <li class="nav-item">
           <%= link_to "Users", users_path, class: "nav-link active", "aria-current": "page" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Your Notifications", notifications_path, class: "nav-link active", "aria-current": "page" %>
+        </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>

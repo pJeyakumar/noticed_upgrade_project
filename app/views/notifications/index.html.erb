@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <div id="notifications" class="row">
+    <% if @notifications.empty? %>
+      <div class="card bg-success">
+        <div class="card-body">
+          <h3 class="text-light text-center">You have no Notifications!</h3>
+        </div>
+      </div>
+    <% end %>
+    <% @notifications.each do |notification| %>
+      <div class="col-md-4 mb-4">
+        <div class="<%= notification.unread? ? "card bg-primary-subtle" : "card border" %>">
+          <div class="card-body">
+            <%= render notification %>
+            <p class="mt-2">
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

@@ -1,0 +1,25 @@
+<div id="<%= dom_id notification %>">
+  <p>
+    <strong>Type:</strong>
+    <%= notification.type %>
+  </p>
+  <p>
+    <strong>Sent on:</strong>
+    <%= notification.created_at.strftime("%B %d, %Y") %>
+  </p>
+  <% if notification.read_at.present? %>
+    <p>
+      <strong>Read on:</strong>
+      <%= notification.read_at.strftime("%B %d, %Y") %>
+    </p>
+  <% end %>
+  <div class="d-flex justify-content-end mb-3">
+    <%= button_to toggle_read_notification_path(notification), method: :patch, class: (notification.unread? ? "btn btn-primary" : "btn btn-secondary") do %>
+      <% if notification.unread? %>
+        <i class="text-light">Mark as Read</i>
+      <% else %>
+        <i class="text-light">Mark as Unread</i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
