@@ -1,5 +1,4 @@
 class NewAircraftCreatedNotifier < Noticed::Event
-  deliver_by :database, if: :database_notifications?
   deliver_by :email, mailer: "AircraftMailer", method: "created_email", if: :email_notifications?
 
   # Variables that tells the system if it should send a notification if the recipient isn't subscribed
