@@ -105,7 +105,7 @@ group :test do
 end
 
 # notifications
-gem "noticed", "~> 1.6.0"
+gem "noticed", "~> 2.3", ">= 2.3.2"
 
 # Authentication
 gem "devise", "~> 4.9.4"
