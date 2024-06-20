@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :logbook_entries
   resources :users
   resources :aircrafts
-  resources :notifications, only: %i[index], shallow: true do
+  resources :notifications, only: %i[index] do
     patch :toggle_read, on: :member
   end
 end
