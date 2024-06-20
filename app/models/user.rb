@@ -19,7 +19,6 @@ class User < ApplicationRecord
   has_many :noticed_notifications, as: :event_user, dependent: :destroy, class_name: "Noticed::Notification"
   has_many :noticed_notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification"
 
-
   after_create_commit :notify_creation_to_user
   after_update :notify_update_to_user
 
@@ -34,7 +33,6 @@ class User < ApplicationRecord
   private
 
   def notify_creation_to_user
-    debugger
     UserSignUpNotifier.with(event_user: self).deliver_later(UserSignUpNotifier.targets)
   end
 
