@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications or /notifications.json
   def index
-    @notifications = Notification.where(recipient_id: current_user.id).order(read_at: :desc)
+    @notifications = current_user.notifications.order(read_at: :desc)
   end
 
   # GET /notifications/1 or /notifications/1.json
