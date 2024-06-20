@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe(NewAircraftCreatedNotification, type: :model) do
+RSpec.describe(NewAircraftCreatedNotifier, type: :model) do
   # Must eagerly create a user first, or notifications will not be created
   before { create(:user) }
 
@@ -8,7 +8,7 @@ RSpec.describe(NewAircraftCreatedNotification, type: :model) do
 
   context "when aircraft are created" do
     it "creates database notifications" do
-      expect { aircraft }.to(change(Notification, :count).by(1))
+      expect { aircraft }.to(change(Noticed::Notification, :count).by(1))
     end
 
     it "creates email notifications" do

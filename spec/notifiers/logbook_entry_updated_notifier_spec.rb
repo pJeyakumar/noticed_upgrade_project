@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe(LogbookEntryUpdatedNotification, type: :model) do
+RSpec.describe(LogbookEntryUpdatedNotifier, type: :model) do
   let!(:logbook_entry) { create(:logbook_entry) }
 
   context "when logbook entries are updated" do
     it "creates database notifications" do
-      expect { logbook_entry.update(duration: 666) }.to(change(Notification, :count).by(1))
+      expect { logbook_entry.update(duration: 666) }.to(change(Noticed::Notification, :count).by(1))
     end
 
     # Ideally, this test would check the mailer queues using the have_enqueued_job matcher. A bug in Active Job
