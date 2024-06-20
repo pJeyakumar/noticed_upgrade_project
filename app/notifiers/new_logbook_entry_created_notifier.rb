@@ -5,7 +5,7 @@ class NewLogbookEntryCreatedNotifier < Noticed::Base
   DEFAULT_SEND_NOTIFICATION = true
   DEFAULT_SEND_EMAIL_NOTIFICATION = true
 
-  param :logbook_entry
+  required_param :logbook_entry
 
   notification_methods do
     def message

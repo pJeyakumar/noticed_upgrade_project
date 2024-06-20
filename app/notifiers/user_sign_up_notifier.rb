@@ -7,7 +7,7 @@ class UserSignUpNotifier < Noticed::Base
   DEFAULT_SEND_EMAIL_NOTIFICATION = true
 
   # Add required params
-  param :event_user
+  required_param :event_user
 
   notification_methods do
     def message

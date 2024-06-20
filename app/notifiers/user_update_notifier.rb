@@ -7,7 +7,8 @@ class UserUpdateNotifier < Noticed::Base
   DEFAULT_SEND_EMAIL_NOTIFICATION = true
 
   # Add required params
-  param :event_user
+  required_param :event_user
+  params :test
 
   notification_methods do
     def message

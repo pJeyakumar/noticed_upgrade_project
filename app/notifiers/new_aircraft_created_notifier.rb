@@ -7,7 +7,7 @@ class NewAircraftCreatedNotifier < Noticed::Base
   DEFAULT_SEND_EMAIL_NOTIFICATION = true
 
   # Add required params
-  param :aircraft
+  required_param :aircraft
 
   notification_methods do
     def message
