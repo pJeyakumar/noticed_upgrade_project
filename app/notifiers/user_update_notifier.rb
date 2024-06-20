@@ -1,20 +1,20 @@
-class NewAircraftCreatedNotification < Noticed::Base
+class UserUpdateNotifier < Noticed::Base
   deliver_by :database, if: :database_notifications?
-  deliver_by :email, mailer: "AircraftMailer", method: "created_email", if: :email_notifications?
+  deliver_by :email, mailer: "UserMailer", method: "update_user", if: :email_notifications?
 
   # Variables that tells the system if it should send a notification if the recipient isn't subscribed
   DEFAULT_SEND_NOTIFICATION = true
   DEFAULT_SEND_EMAIL_NOTIFICATION = true
 
   # Add required params
-  param :aircraft
+  param :event_user
 
   def message
-    "#{params[:aircraft].model} has been created for use in the flight sim."
+    "The user #{params[:event_user]} - #{params[:event_user].email} has been updated."
   end
 
   def url
-    aircraft_path(params[:aircraft])
+    user_path(params[:event_user])
   end
 
   def database_notifications?

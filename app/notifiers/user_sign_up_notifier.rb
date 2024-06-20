@@ -1,6 +1,6 @@
-class UserUpdateNotification < Noticed::Base
+class UserSignUpNotifier < Noticed::Base
   deliver_by :database, if: :database_notifications?
-  deliver_by :email, mailer: "UserMailer", method: "update_user", if: :email_notifications?
+  deliver_by :email, mailer: "UserMailer", method: "created_user", if: :email_notifications?
 
   # Variables that tells the system if it should send a notification if the recipient isn't subscribed
   DEFAULT_SEND_NOTIFICATION = true
@@ -10,7 +10,7 @@ class UserUpdateNotification < Noticed::Base
   param :event_user
 
   def message
-    "The user #{params[:event_user]} - #{params[:event_user].email} has been updated."
+    "A new user #{params[:event_user]} with email #{params[:event_user].email} has been signed up."
   end
 
   def url
