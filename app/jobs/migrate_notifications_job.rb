@@ -1,13 +1,6 @@
 class MigrateNotificationsJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    # Do something later
-  end
-end
-class MigrateNotificationsJob < ApplicationJob
-  queue_as :default
-
   BATCH_SIZE = 10
   LIMIT = 100
 
@@ -23,7 +16,7 @@ class MigrateNotificationsJob < ApplicationJob
     last_processed_at = get_last_processed_at
 
     # Process notifications in batches  
-    Notification.order(created_at: :desc).where("created_at > ?", last_processed_at).limit(LIMIT).find_in_batches(order: :desc, batch_size: BATCH_SIZE) do |batch|
+    Notification.order(created_at: :desc).where("created_at < ?", last_processed_at).limit(LIMIT).find_in_batches(order: :desc, batch_size: BATCH_SIZE) do |batch|
       batch.each do |notification|
         return if total_processed >= LIMIT
         migrate_notification(notification)
@@ -35,8 +28,8 @@ class MigrateNotificationsJob < ApplicationJob
   private
 
   def get_last_processed_at
-    last_event = Noticed::Event.order(created_at: :desc).first
-    last_event ? last_event.created_at : Time.at(0)
+    last_event = Noticed::Event.order(created_at: :desc).last
+    last_event ? last_event.created_at : DateTime.now
   end
 
   def migrate_notification(notification)      
