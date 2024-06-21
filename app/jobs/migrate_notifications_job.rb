@@ -20,8 +20,10 @@ class MigrateNotificationsJob < ApplicationJob
   def perform(*args)  
     total_processed = 0
 
-    # Process notifications in batches
-    Notification.order(created_at: :desc).limit(LIMIT).find_in_batches(batch_size: BATCH_SIZE) do |batch|
+    last_processed_at = get_last_processed_at
+
+    # Process notifications in batches  
+    Notification.order(created_at: :desc).where("created_at > ?", last_processed_at).limit(LIMIT).find_in_batches(batch_size: BATCH_SIZE) do |batch|
       batch.each do |notification|
         return if total_processed >= LIMIT
         migrate_notification(notification)
@@ -32,7 +34,12 @@ class MigrateNotificationsJob < ApplicationJob
 
   private
 
-  def migrate_notification(notification)
+  def get_last_processed_at
+    last_event = Noticed::Event.order(created_at: :asc).first
+    last_event ? last_event.created_at : Time.at(0)
+  end
+
+  def migrate_notification(notification)      
     # Ensure the record has not already been migrated, Not sure about this query working in "Notice::Event", but something like this.    
     return if Noticed::Event.where(created_at: notification.created_at, params: Noticed::Coder.load(notification.params).with_indifferent_access).exists?
 
