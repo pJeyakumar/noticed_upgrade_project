@@ -7,8 +7,7 @@ class UserUpdateNotifier < Noticed::Event
 
   # Add required params
   required_param :event_user
-  required_params :event_user
-
+  
   notification_methods do
     def message
       "The user #{params[:event_user]} - #{params[:event_user].email} has been updated."
