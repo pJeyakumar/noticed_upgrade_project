@@ -7,7 +7,7 @@ class UserUpdateNotifier < Noticed::Event
 
   # Add required params
   required_param :event_user
-  params :test
+  required_params :event_user
 
   notification_methods do
     def message
