@@ -1,8 +1,9 @@
 class MigrateNotificationsJob < ApplicationJob
+  require "benchmark"
   queue_as :default
 
-  BATCH_SIZE = 10
-  LIMIT = 100
+  BATCH_SIZE = 5000
+  LIMIT = 25000
 
   # Define the Notification model to access the old table
   class Notification < ApplicationRecord
@@ -12,17 +13,19 @@ class MigrateNotificationsJob < ApplicationJob
 
   def perform(*args)  
     total_processed = 0
+    benchmark_result = Benchmark.measure do
+      last_processed_at = get_last_processed_at
 
-    last_processed_at = get_last_processed_at
-
-    # Process notifications in batches  
-    Notification.order(created_at: :desc).where("created_at < ?", last_processed_at).limit(LIMIT).find_in_batches(order: :desc, batch_size: BATCH_SIZE) do |batch|
-      batch.each do |notification|
-        return if total_processed >= LIMIT
-        migrate_notification(notification)
-        total_processed += 1      
-      end    
+      # Process notifications in batches  
+      Notification.order(created_at: :desc).where("created_at < ?", last_processed_at).limit(LIMIT).find_in_batches(order: :desc, batch_size: BATCH_SIZE) do |batch|
+        batch.each do |notification|
+          return if total_processed >= LIMIT
+          migrate_notification(notification)
+          total_processed += 1      
+        end    
+      end
     end
+    Rails.logger.info("Time taken to process notifications: #{benchmark_result.total} seconds")
   end
 
   private
