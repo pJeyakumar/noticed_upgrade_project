@@ -1,18 +1,18 @@
 require "rails_helper"
 
-RSpec.describe(NewLogbookEntryCreatedNotification, type: :model) do
+RSpec.describe(NewLogbookEntryCreatedNotifier, type: :model) do
   let(:logbook_entry) { create(:logbook_entry) }
 
   context "when logbook entries are created" do
     it "creates database notifications" do
       # Two notifications expected because a User must exist for a Logbook_Entry to be created
-      expect { logbook_entry }.to(change(Notification.where(type: "NewLogbookEntryCreatedNotification"), :count).by(1))
+      expect { logbook_entry }.to(change(Noticed::Notification.where(type: "NewLogbookEntryCreatedNotifier::Notification"), :count).by(1))
     end
 
     it "creates database notifications of the right type" do
       logbook_entry
       # the first notification will be for the user created, the second notification will pertain to the logbook
-      expect(Notification.second.type).to(eq("NewLogbookEntryCreatedNotification"))
+      expect(Noticed::Notification.second.type).to(eq("NewLogbookEntryCreatedNotifier::Notification"))
     end
 
     it "creates email notifications" do

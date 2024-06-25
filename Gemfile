@@ -105,7 +105,7 @@ group :test do
 end
 
 # notifications
-gem "noticed", "~> 1.6.0"
+gem "noticed", "~> 2.3", ">= 2.3.2"
 
 # Authentication
 gem "devise", "~> 4.9.4"
@@ -127,3 +127,6 @@ gem "ahoy_email", "~> 2.3.0"
 
 # Bootstrap Form
 gem "bootstrap_form", "~> 5.0.0"
+
+# Benchmarking
+gem "benchmark", "~> 0.3.0"

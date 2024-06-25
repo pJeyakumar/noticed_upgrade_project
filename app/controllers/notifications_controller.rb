@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications or /notifications.json
   def index
-    @notifications = current_user.notifications.order(read_at: :desc)
+    @notifications = current_user.noticed_notifications.order(read_at: :desc)
   end
 
   # GET /notifications/1 or /notifications/1.json
@@ -12,7 +12,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications/new
   def new
-    @notification = Notification.new
+    @notification = Noticed::Notification.new
   end
 
   # GET /notifications/1/edit
@@ -21,7 +21,7 @@ class NotificationsController < ApplicationController
 
   # POST /notifications or /notifications.json
   def create
-    @notification = Notification.new(notification_params)
+    @notification = Noticed::Notification.new(notification_params)
 
     respond_to do |format|
       if @notification.save
@@ -49,7 +49,7 @@ class NotificationsController < ApplicationController
 
   # PATCH/PUT /notifications/1/toggle_read or /notifications/1/toggle_read.json
   def toggle_read
-    @notification.read? ? @notification.mark_as_unread! : @notification.mark_as_read!
+    @notification.read? ? @notification.mark_as_unread : @notification.mark_as_read
 
     respond_to do |format|
       format.html { redirect_to notifications_path(), notice: "Notification has been marked as #{@notification.read? ? "read" : "unread"}!" }
@@ -69,7 +69,7 @@ class NotificationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
-      @notification = Notification.find(params[:id])
+      @notification = Noticed::Notification.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

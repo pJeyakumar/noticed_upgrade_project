@@ -15,12 +15,9 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true
 
-  has_many :notifications, as: :recipient, dependent: :destroy
-
-  has_noticed_notifications
-  has_noticed_notifications param_name: :assigned_to, destroy: false, model_name: "Notification"
-  has_noticed_notifications param_name: :requester, destroy: false, model_name: "Notification"
-  has_noticed_notifications param_name: :granted_by, destroy: false, model_name: "Notification"
+  has_many :noticed_events, as: :record, dependent: :destroy, class_name: "Noticed::Event"
+  has_many :noticed_notifications, as: :event_user, dependent: :destroy, class_name: "Noticed::Notification"
+  has_many :noticed_notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification"
 
   after_create_commit :notify_creation_to_user
   after_update :notify_update_to_user
@@ -36,10 +33,10 @@ class User < ApplicationRecord
   private
 
   def notify_creation_to_user
-    UserSignUpNotification.with(event_user: self).deliver_later(UserSignUpNotification.targets)
+    UserSignUpNotifier.with(event_user: self).deliver_later(UserSignUpNotifier.targets)
   end
 
   def notify_update_to_user
-    UserUpdateNotification.with(event_user: self).deliver_later(UserUpdateNotification.targets)
+    UserUpdateNotifier.with(event_user: self).deliver_later(UserUpdateNotifier.targets)
   end
 end

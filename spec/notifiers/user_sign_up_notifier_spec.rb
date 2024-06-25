@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe(UserSignUpNotification, type: :model) do
+RSpec.describe(UserSignUpNotifier, type: :model) do
   let(:user) { create(:user) }
 
   context "when a new user signs up" do
     it "creates database notifications" do
-      expect { user }.to(change(Notification, :count).by(1))
+      expect { user }.to(change(Noticed::Notification, :count).by(1))
     end
 
     it "creates email notifications" do

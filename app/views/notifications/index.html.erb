@@ -17,7 +17,7 @@
       <div class="col-md-4 mb-4">
         <div class="<%= notification.unread? ? "card bg-primary-subtle" : "card border" %>">
           <div class="card-body">
-            <%= render notification %>
+            <%= render partial: "notification", locals: {notification: notification} %>
           </div>
         </div>
       </div>

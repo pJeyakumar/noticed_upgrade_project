@@ -53,12 +53,12 @@ aircrafts = [
 aircrafts.each do |aircraft_data|
   aircraft = Aircraft.create!(aircraft_data)
   AIRCRAFT_NOTIFICATIONS_COUNT.times do
-    notification = NewAircraftCreatedNotification.with(aircraft: aircraft)
-    notification.deliver_later(NewAircraftCreatedNotification.targets)
+    notification = NewAircraftCreatedNotifier.with(aircraft: aircraft)
+    notification.deliver_later(NewAircraftCreatedNotifier.targets)
   end
 end
 
-# Create Logbook Entries and Notifications
+# Create Logbook Entries and Notifiers
 LOGBOOK_ENTRY_NOTIFICATIONS.times do
   logbook_entry = LogbookEntry.create!(
     aircraft: Aircraft.order("RANDOM()").first,
@@ -70,22 +70,22 @@ LOGBOOK_ENTRY_NOTIFICATIONS.times do
     duration: Faker::Number.between(from: 1, to: 10),
     time_of_day: LogbookEntry.time_of_days.keys.sample
   )
-  new_logbook_notification = NewLogbookEntryCreatedNotification.with(logbook_entry: logbook_entry)
-  new_logbook_notification.deliver_later(NewLogbookEntryCreatedNotification.targets)
+  new_logbook_notification = NewLogbookEntryCreatedNotifier.with(logbook_entry: logbook_entry)
+  new_logbook_notification.deliver_later(NewLogbookEntryCreatedNotifier.targets)
 
-  update_logbook_notification = LogbookEntryUpdatedNotification.with(logbook_entry: logbook_entry)
-  update_logbook_notification.deliver_later(LogbookEntryUpdatedNotification.targets)
+  update_logbook_notification = LogbookEntryUpdatedNotifier.with(logbook_entry: logbook_entry)
+  update_logbook_notification.deliver_later(LogbookEntryUpdatedNotifier.targets)
 end
 
-# Create 1000 UserSignUpNotification and UserUpdateNotification
+# Create 1000 UserSignUpNotifier and UserUpdateNotifier
 users.each do |user|
   USER_NOTIFICATIONS.times do
-    sign_up_notification = UserSignUpNotification.with(event_user: user)
-    sign_up_notification.deliver_later(UserSignUpNotification.targets)
+    sign_up_notification = UserSignUpNotifier.with(event_user: user)
+    sign_up_notification.deliver_later(UserSignUpNotifier.targets)
 
-    update_notification = UserUpdateNotification.with(event_user: user)
-    update_notification.deliver_later(UserUpdateNotification.targets)
+    update_notification = UserUpdateNotifier.with(event_user: user)
+    update_notification.deliver_later(UserUpdateNotifier.targets)
   end
 end
 
-Rails.logger.debug { "Seeded #{User.count} users, #{Aircraft.count} aircrafts, #{LogbookEntry.count} logbook entries, and #{Notification.count} notification." }
+Rails.logger.debug { "Seeded #{User.count} users, #{Aircraft.count} aircrafts, #{LogbookEntry.count} logbook entries, and #{Noticed::Notification.count} notification." }

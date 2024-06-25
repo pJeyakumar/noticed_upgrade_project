@@ -6,7 +6,7 @@ class Aircraft < ApplicationRecord
   after_create_commit :notify_user
 
   def notify_user
-    NewAircraftCreatedNotification.with(aircraft: self).deliver_later(NewAircraftCreatedNotification.targets)
+    NewAircraftCreatedNotifier.with(aircraft: self).deliver_later(NewAircraftCreatedNotifier.targets)
   end
 
   enum engine: {

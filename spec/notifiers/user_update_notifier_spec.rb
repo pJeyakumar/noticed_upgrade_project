@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe(UserUpdateNotification, type: :model) do
+RSpec.describe(UserUpdateNotifier, type: :model) do
   let!(:user) { create(:user) }
 
   context "when a user is updated" do
     it "creates database notification" do
-      expect { user.update(email: "new@email.com") }.to(change(Notification, :count).by(1))
+      expect { user.update(email: "new@email.com") }.to(change(Noticed::Notification, :count).by(1))
     end
 
     it "creates email notification" do

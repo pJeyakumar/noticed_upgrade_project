@@ -21,10 +21,10 @@ class LogbookEntry < ApplicationRecord
   private
 
   def notify_creation_to_user
-    NewLogbookEntryCreatedNotification.with(logbook_entry: self).deliver_later(NewLogbookEntryCreatedNotification.targets)
+    NewLogbookEntryCreatedNotifier.with(logbook_entry: self).deliver_later(NewLogbookEntryCreatedNotifier.targets)
   end
 
   def notify_update_to_user
-    LogbookEntryUpdatedNotification.with(logbook_entry: self).deliver_later(LogbookEntryUpdatedNotification.targets)
+    LogbookEntryUpdatedNotifier.with(logbook_entry: self).deliver_later(LogbookEntryUpdatedNotifier.targets)
   end
 end
